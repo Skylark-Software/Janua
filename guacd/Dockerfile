@@ -40,7 +40,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgstreamer1.0-dev \
     libgstreamer-plugins-base1.0-dev \
     libfaad-dev \
-    libfaac-dev \
     libcairo2-dev \
     libpango1.0-dev \
     libpng-dev \
@@ -80,6 +79,7 @@ RUN cmake -B build -G Ninja \
     -DWITH_OPENSSL=ON \
     -DWITH_GSM=ON \
     -DWITH_FAAD2=ON \
+    -DWITH_FAAC=OFF \
     -DWITH_FFMPEG=ON \
     -DWITH_SWSCALE=ON \
     -DWITH_CAIRO=ON \
