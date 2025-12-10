@@ -101,6 +101,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     ca-certificates \
     curl \
+    pkg-config \
+    autoconf \
+    automake \
+    libtool \
     libcairo2-dev \
     libgcrypt20-dev \
     libjpeg62-turbo-dev \
@@ -118,6 +122,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libavformat-dev \
     libavutil-dev \
     libswscale-dev \
+    # FreeRDP build dependencies needed for header detection
+    libx11-dev \
+    libxext-dev \
+    libxinerama-dev \
+    libxcursor-dev \
+    libxkbfile-dev \
+    libxv-dev \
+    libxi-dev \
+    libxdamage-dev \
+    libxrandr-dev \
+    libxrender-dev \
+    libxfixes-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Update library cache
@@ -130,11 +146,16 @@ RUN curl -fsSL "https://apache.org/dyn/closer.lua/guacamole/${GUACAMOLE_VERSION}
 
 WORKDIR /src/guacamole-server-${GUACAMOLE_VERSION}
 
+# Verify FreeRDP 3 is accessible
+RUN pkg-config --modversion freerdp3 && \
+    pkg-config --modversion freerdp-client3 && \
+    pkg-config --modversion winpr3
+
 # Configure with FreeRDP 3 support
 RUN PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH \
     ./configure \
     --prefix=/usr/local \
-    --with-freerdp=/usr/local \
+    --with-rdp \
     --enable-allow-freerdp-snapshots
 
 RUN make -j$(nproc) \
