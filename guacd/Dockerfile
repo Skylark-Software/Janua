@@ -214,6 +214,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libusb-1.0-0 \
     libcjson1 \
     libkrb5-3 \
+    libfuse3-3 \
+    libicu72 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy FreeRDP 3 libraries
