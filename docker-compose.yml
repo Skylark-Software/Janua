@@ -1,0 +1,56 @@
+# Janua - Apache Guacamole with FreeRDP 3 support
+# Copyright 2025 Skylark Software LLC
+# Licensed under Apache License 2.0
+
+version: "3.8"
+
+services:
+  guacd:
+    build:
+      context: ./guacd
+      dockerfile: Dockerfile
+    image: janua-guacd:latest
+    container_name: janua-guacd
+    restart: unless-stopped
+    volumes:
+      - ./drive:/drive:rw
+      - ./record:/record:rw
+    networks:
+      - janua
+
+  guacamole:
+    image: guacamole/guacamole:1.6.0
+    container_name: janua-guacamole
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      GUACD_HOSTNAME: guacd
+      POSTGRESQL_HOSTNAME: postgres
+      POSTGRESQL_DATABASE: guacamole_db
+      POSTGRESQL_USER: guacamole_user
+      POSTGRESQL_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    depends_on:
+      - guacd
+      - postgres
+    networks:
+      - janua
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: janua-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: guacamole_db
+      POSTGRES_USER: guacamole_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /var/lib/postgresql/data/guacamole
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    networks:
+      - janua
+
+networks:
+  janua:
+    driver: bridge

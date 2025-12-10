@@ -1,0 +1,24 @@
+# Data directories (created at runtime)
+postgres-data/
+drive/
+record/
+
+# Generated schema (user should generate this)
+initdb/*.sql
+
+# Environment files with secrets
+.env
+*.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
