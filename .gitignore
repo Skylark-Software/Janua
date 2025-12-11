@@ -25,3 +25,5 @@ Thumbs.db
 
 # Maven
 guacamole-branding/target/
+build.log
+build.log
