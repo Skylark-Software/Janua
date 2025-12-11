@@ -1,0 +1,13 @@
+--- a/src/protocols/rdp/channels/rdpsnd/rdpsnd-messages.c
++++ b/src/protocols/rdp/channels/rdpsnd/rdpsnd-messages.c
+@@ -68,8 +68,8 @@ void guac_rdpsnd_formats_handler(guac_rdp_common_svc* svc,
+     /* Fill in format count later */
+     Stream_Seek_UINT16(output_stream); /* offset = 0x12 */
+
+-    /* Version and padding */
++    /* Version and padding - use version 8 for modern RDP servers (GNOME Remote Desktop) */
+     Stream_Write_UINT8(output_stream,  0);
+-    Stream_Write_UINT16(output_stream, 6);
++    Stream_Write_UINT16(output_stream, 8);
+     Stream_Write_UINT8(output_stream,  0);
+

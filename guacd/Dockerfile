@@ -107,6 +107,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     ca-certificates \
     curl \
+    patch \
     pkg-config \
     autoconf \
     automake \
@@ -151,6 +152,15 @@ RUN curl -fsSL "https://apache.org/dyn/closer.lua/guacamole/${GUACAMOLE_VERSION}
     && tar -xzf guacamole-server.tar.gz
 
 WORKDIR /src/guacamole-server-${GUACAMOLE_VERSION}
+
+# Copy and apply patches for modern RDPSND protocol support
+COPY patches/ /src/patches/
+RUN for patch in /src/patches/*.patch; do \
+        if [ -f "$patch" ]; then \
+            echo "Applying patch: $patch"; \
+            patch -p1 < "$patch"; \
+        fi; \
+    done
 
 # Verify FreeRDP 3 is accessible
 RUN pkg-config --modversion freerdp3 && \
