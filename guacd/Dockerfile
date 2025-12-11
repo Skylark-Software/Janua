@@ -54,6 +54,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libsdl2-ttf-dev \
     libfuse3-dev \
     libwebkit2gtk-4.0-dev \
+    # PipeWire support for Wayland audio
+    libpipewire-0.3-dev \
     ninja-build \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
@@ -75,6 +77,7 @@ RUN cmake -B build -G Ninja \
     -DCHANNEL_RDPSND=ON \
     -DWITH_PULSE=ON \
     -DWITH_ALSA=ON \
+    -DWITH_PIPEWIRE=ON \
     -DWITH_JPEG=ON \
     -DWITH_OPENSSL=ON \
     -DWITH_GSM=ON \
@@ -85,6 +88,9 @@ RUN cmake -B build -G Ninja \
     -DWITH_CAIRO=ON \
     -DWITH_PKCS11=ON \
     -DWITH_KRB5=ON \
+    -DWITH_INTERNAL_MD4=ON \
+    -DWITH_INTERNAL_MD5=ON \
+    -DWITH_INTERNAL_RC4=ON \
     -DBUILD_SHARED_LIBS=ON \
     && cmake --build build -j$(nproc) \
     && DESTDIR=/freerdp-install cmake --install build
@@ -216,6 +222,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libkrb5-3 \
     libfuse3-3 \
     libicu72 \
+    # PipeWire runtime for Wayland audio support
+    libpipewire-0.3-0 \
+    pipewire \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy FreeRDP 3 libraries
