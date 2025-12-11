@@ -12,24 +12,28 @@ services:
     image: janua-guacd:latest
     container_name: janua-guacd
     restart: unless-stopped
+    network_mode: host
     volumes:
       - ./drive:/drive:rw
       - ./record:/record:rw
-    networks:
-      - janua
 
   guacamole:
     image: guacamole/guacamole:1.6.0
     container_name: janua-guacamole
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "8085:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
-      GUACD_HOSTNAME: guacd
+      GUACD_HOSTNAME: host.docker.internal
       POSTGRESQL_HOSTNAME: postgres
       POSTGRESQL_DATABASE: guacamole_db
       POSTGRESQL_USER: guacamole_user
       POSTGRESQL_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      GUACAMOLE_HOME: /janua-config
+    volumes:
+      - ./guacamole-home:/janua-config:ro
     depends_on:
       - guacd
       - postgres
