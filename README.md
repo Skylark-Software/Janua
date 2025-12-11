@@ -206,7 +206,7 @@ Key build flags enabled:
 
 ## License
 
-Apache License 2.0 - See [LICENSE](LICENSE) for details.
+GNU 3.0 - See [LICENSE](LICENSE) for details.
 
 ## Credits
 
