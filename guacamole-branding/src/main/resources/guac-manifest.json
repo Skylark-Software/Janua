@@ -1,0 +1,8 @@
+{
+    "guacamoleVersion": "*",
+    "name": "Janua Branding",
+    "namespace": "janua-branding",
+    "js": [
+        "janua-audio-fix.js"
+    ]
+}
