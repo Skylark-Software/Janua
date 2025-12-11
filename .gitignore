@@ -22,3 +22,6 @@ Thumbs.db
 
 # Docker
 *.log
+
+# Maven
+guacamole-branding/target/
