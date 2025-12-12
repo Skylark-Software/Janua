@@ -255,12 +255,12 @@ COPY --from=guacd-builder /guacd-install/usr/local /usr/local
 # Update library cache
 RUN ldconfig
 
-# Create guacd user
-RUN useradd -r -s /sbin/nologin guacd
+# Create guacd user with home directory (FreeRDP requires writable home)
+RUN useradd -r -m -d /home/guacd -s /sbin/nologin guacd
 
 # Create directories
 RUN mkdir -p /var/lib/guacd /var/log/guacd \
-    && chown guacd:guacd /var/lib/guacd /var/log/guacd
+    && chown guacd:guacd /var/lib/guacd /var/log/guacd /home/guacd
 
 USER guacd
 
