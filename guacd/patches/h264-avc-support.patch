@@ -1,18 +1,18 @@
 --- a/src/protocols/rdp/settings.c
 +++ b/src/protocols/rdp/settings.c
-@@ -1542,9 +1542,18 @@ void guac_rdp_push_settings(guac_client* client,
-     /* Enable RemoteFX / Graphics Pipeline */
-     if (guac_settings->enable_gfx) {
-
+@@ -1544,6 +1544,16 @@
          freerdp_settings_set_bool(rdp_settings, FreeRDP_SupportGraphicsPipeline, TRUE);
          freerdp_settings_set_bool(rdp_settings, FreeRDP_RemoteFxCodec, TRUE);
 
 +        /* Enable H.264/AVC codecs for RDPGFX - required for KDE KRdp and
-+         * modern GNOME Remote Desktop servers that mandate H.264 support */
++         * modern GNOME Remote Desktop servers that mandate H.264 support.
++         * Note: Only enable GfxH264 (AVC420) - KDE KRdp specifically requires
++         * YUV420 mode and rejects connections with AVC444 enabled. */
 +        freerdp_settings_set_bool(rdp_settings, FreeRDP_GfxH264, TRUE);
-+        freerdp_settings_set_bool(rdp_settings, FreeRDP_GfxAVC444, TRUE);
++        freerdp_settings_set_bool(rdp_settings, FreeRDP_GfxThinClient, FALSE);
++        freerdp_settings_set_bool(rdp_settings, FreeRDP_GfxSmallCache, FALSE);
 +        guac_client_log(client, GUAC_LOG_INFO,
-+                "H.264/AVC codecs enabled for Graphics Pipeline");
++                "H.264/AVC420 codec enabled for Graphics Pipeline");
 +
          if (freerdp_settings_get_uint32(rdp_settings, FreeRDP_ColorDepth) != RDP_GFX_REQUIRED_DEPTH) {
              guac_client_log(client, GUAC_LOG_WARNING, "Ignoring requested "
