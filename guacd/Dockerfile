@@ -47,6 +47,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libavutil-dev \
     libswscale-dev \
     libswresample-dev \
+    # H.264/AVC codec support for RDPGFX
+    libopenh264-dev \
+    libx264-dev \
     libpkcs11-helper1-dev \
     libkrb5-dev \
     libcjson-dev \
@@ -88,6 +91,9 @@ RUN cmake -B build -G Ninja \
     -DWITH_CAIRO=ON \
     -DWITH_PKCS11=ON \
     -DWITH_KRB5=ON \
+    # H.264/AVC codec support - required for KDE KRdp and modern GNOME GRD
+    -DWITH_OPENH264=ON \
+    -DWITH_VIDEO_FFMPEG=ON \
     -DWITH_INTERNAL_MD4=ON \
     -DWITH_INTERNAL_MD5=ON \
     -DWITH_INTERNAL_RC4=ON \
@@ -232,6 +238,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libkrb5-3 \
     libfuse3-3 \
     libicu72 \
+    # H.264/AVC codec runtime for RDPGFX
+    libopenh264-7 \
     # PipeWire runtime for Wayland audio support
     libpipewire-0.3-0 \
     pipewire \
