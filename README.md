@@ -11,13 +11,15 @@ The official Apache Guacamole 1.6.0 guacd uses FreeRDP 2.x, which has two major 
 1. **No GFX Pipeline Extension** - GNOME Remote Desktop requires the Graphics Pipeline Extension (RDPGFX) which is only available in FreeRDP 3.x
 2. **RDPSND Protocol Version 6** - GNOME Remote Desktop expects RDPSND version 8; version 6 causes audio channel negotiation to fail
 
-Janua solves both problems by:
+Janua solves these problems by:
 - Building guacd against FreeRDP 3.10.3
 - Patching guacamole-server to advertise RDPSND version 8
+- Enabling H.264/AVC codecs for RDPGFX (required by KDE KRdp)
 
 ## Features
 
 - **FreeRDP 3.x support** with full GFX Pipeline Extension
+- **H.264/AVC codec support** for KDE KRdp and modern RDP servers
 - **Audio redirection** working with GNOME Remote Desktop
 - **RDPSND version 8** patch for modern RDP servers
 - **PipeWire support** in FreeRDP build
@@ -28,6 +30,7 @@ Janua solves both problems by:
 
 | Target | Video | Audio | Notes |
 |--------|-------|-------|-------|
+| KDE Plasma KRdp | ✅ | ✅ | Requires H.264/AVC support (Janua 2.0+) |
 | GNOME Remote Desktop (GNOME 48+) | ✅ | ✅ | Fedora 42, Ubuntu 25.04+ |
 | GNOME Remote Desktop (GNOME 46) | ✅ | ❌ | Ubuntu 24.04 - GRD has PipeWire threading bug |
 | xrdp | ✅ | ✅ | Full compatibility |
