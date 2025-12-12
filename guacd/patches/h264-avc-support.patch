@@ -1,6 +1,6 @@
 --- a/src/protocols/rdp/settings.c
 +++ b/src/protocols/rdp/settings.c
-@@ -1542,9 +1542,20 @@ void guac_rdp_push_settings(guac_client* client,
+@@ -1542,9 +1542,18 @@ void guac_rdp_push_settings(guac_client* client,
      /* Enable RemoteFX / Graphics Pipeline */
      if (guac_settings->enable_gfx) {
 
@@ -9,12 +9,8 @@
 
 +        /* Enable H.264/AVC codecs for RDPGFX - required for KDE KRdp and
 +         * modern GNOME Remote Desktop servers that mandate H.264 support */
-+#ifdef FreeRDP_GfxH264
 +        freerdp_settings_set_bool(rdp_settings, FreeRDP_GfxH264, TRUE);
-+#endif
-+#ifdef FreeRDP_GfxAVC444
 +        freerdp_settings_set_bool(rdp_settings, FreeRDP_GfxAVC444, TRUE);
-+#endif
 +        guac_client_log(client, GUAC_LOG_INFO,
 +                "H.264/AVC codecs enabled for Graphics Pipeline");
 +
