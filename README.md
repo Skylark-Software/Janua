@@ -101,22 +101,22 @@ On your GNOME Wayland target machine:
 └─────────────────────────┬───────────────────────────────────┘
                           │ HTTP/WebSocket
 ┌─────────────────────────▼───────────────────────────────────┐
-│                     guacamole                                │
-│                  (Web Application)                           │
-│                   Port 8085:8080                             │
+│                     guacamole                               │
+│                  (Web Application)                          │
+│                   Port 8085:8080                            │
 └─────────────────────────┬───────────────────────────────────┘
                           │ Guacamole Protocol
 ┌─────────────────────────▼───────────────────────────────────┐
-│                   janua-guacd                                │
-│              (This Custom Build)                             │
+│                   janua-guacd                               │
+│              (This Custom Build)                            │
 │     FreeRDP 3.10.3 + RDPSND v8 Patch + PipeWire             │
-│                   Port 4822                                  │
+│                   Port 4822                                 │
 └─────────────────────────┬───────────────────────────────────┘
                           │ RDP Protocol
 ┌─────────────────────────▼───────────────────────────────────┐
-│              GNOME Remote Desktop                            │
-│                 (Wayland Target)                             │
-│                   Port 3389                                  │
+│              GNOME Remote Desktop                           │
+│                 (Wayland Target)                            │
+│                   Port 3389                                 │
 └─────────────────────────────────────────────────────────────┘
 ```
 
