@@ -125,7 +125,7 @@ On your GNOME Wayland target machine:
 | Directory | Description |
 |-----------|-------------|
 | `guacd/` | Custom guacd Dockerfile with FreeRDP 3 and patches |
-| `guacd/patches/` | RDPSND version 8 patch for GRD compatibility |
+| `guacd/patches/` | Patches for RDPGFX, H.264, and audio support (see Technical Details) |
 | `guacamole-branding/` | Browser AudioContext fix extension |
 | `guacamole-home/` | Guacamole configuration (extensions, etc.) |
 | `initdb/` | PostgreSQL initialization scripts |
@@ -169,11 +169,14 @@ cp target/janua-branding-*.jar ../guacamole-home/extensions/
 
 ## Technical Details
 
-### The RDPSND Patch
+### Patches
 
-GNOME Remote Desktop requires RDPSND protocol version 8 (introduced in Windows 8.1). The official guacamole-server advertises version 6. This causes audio channel negotiation to fail silently.
+Janua applies three patches to guacamole-server for full RDPGFX/H.264 and audio support:
 
-The patch in `guacd/patches/rdpsnd-version-8.patch` changes:
+#### 1. RDPSND Version 8 (`rdpsnd-version-8.patch`)
+
+GNOME Remote Desktop requires RDPSND protocol version 8 (introduced in Windows 8.1). The official guacamole-server advertises version 6, causing audio channel negotiation to fail silently.
+
 ```c
 // Before
 Stream_Write_UINT16(output_stream, 6);
@@ -182,9 +185,34 @@ Stream_Write_UINT16(output_stream, 6);
 Stream_Write_UINT16(output_stream, 8);
 ```
 
+#### 2. H.264/AVC Support (`h264-avc-support.patch`)
+
+KDE KRdp and modern GNOME Remote Desktop require H.264 codec support via RDPGFX. This patch enables the AVC420 codec in FreeRDP settings:
+
+```c
+freerdp_settings_set_bool(rdp_settings, FreeRDP_GfxH264, TRUE);
+freerdp_settings_set_bool(rdp_settings, FreeRDP_GfxProgressive, TRUE);
+```
+
+Note: Only AVC420 is enabled. KDE KRdp specifically requires YUV420 mode and rejects connections with AVC444.
+
+#### 3. RDPGFX Surface Sync (`gdi-rdpgfx-sync.patch`)
+
+When using H.264, decoded frames are written to separate RDPGFX surface buffers. Without synchronization, the display appears scrambled. This patch calls `UpdateSurfaces()` via the graphics pipeline context to copy decoded H.264 frames to the primary buffer before rendering:
+
+```c
+if (gdi->gfx) {
+    RdpgfxClientContext* gfx = (RdpgfxClientContext*) gdi->gfx;
+    if (gfx->UpdateSurfaces)
+        gfx->UpdateSurfaces(gfx);
+}
+```
+
 ### FreeRDP 3 Build Options
 
 Key build flags enabled:
+- `WITH_OPENH264=ON` - H.264 codec support (required for KDE KRdp)
+- `WITH_VIDEO_FFMPEG=ON` - FFmpeg video codec support
 - `WITH_PIPEWIRE=ON` - PipeWire audio support
 - `CHANNEL_RDPGFX=ON` - Graphics Pipeline Extension
 - `CHANNEL_RDPSND=ON` - Audio redirection
