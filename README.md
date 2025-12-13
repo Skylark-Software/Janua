@@ -235,6 +235,11 @@ Key build flags enabled:
 - Check firewall allows port 3389
 - Ensure TLS certificate is configured
 
+### Scrambled or distorted display (KDE KRdp)
+- Non-standard resolutions may cause display synchronization issues with H.264 decoding
+- Try using a standard resolution (1920x1080, 2560x1440, etc.)
+- This is related to stride alignment in the RDPGFX pipeline
+
 ## License
 
 GNU 3.0 - See [LICENSE](LICENSE) for details.
