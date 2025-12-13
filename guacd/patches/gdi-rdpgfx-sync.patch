@@ -1,0 +1,25 @@
+--- a/src/protocols/rdp/gdi.c
++++ b/src/protocols/rdp/gdi.c
+@@ -23,6 +23,7 @@
+ #include <cairo/cairo.h>
+ #include <freerdp/freerdp.h>
+ #include <freerdp/gdi/gdi.h>
++#include <freerdp/gdi/gfx.h>
+ #include <freerdp/graphics.h>
+ #include <freerdp/primary.h>
+ #include <freerdp/version.h>
+@@ -72,6 +73,14 @@ BOOL guac_rdp_gdi_begin_paint(rdpContext* context) {
+     guac_rdp_client* rdp_client = (guac_rdp_client*) client->data;
+     rdpGdi* gdi = context->gdi;
+
++    /* RDPGFX/H.264 Fix: When using the Graphics Pipeline (RDPGFX) with H.264,
++     * decoded frames are written to separate surface buffers. We must call
++     * gdi_UpdateSurfaces() to copy surface data to the primary buffer before
++     * reading from it, otherwise the display may appear scrambled.
++     * This is safe to call even when RDPGFX is not in use. */
++    if (gdi->graphics)
++        gdi_UpdateSurfaces(gdi);
++
+     GUAC_ASSERT(rdp_client->current_context == NULL);
+
+     /* All potential drawing operations must occur while holding an open context */
