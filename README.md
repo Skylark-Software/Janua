@@ -40,6 +40,8 @@ Janua solves these problems by:
 
 ## Quick Start
 
+For a comprehensive guide including prerequisites, see the [Full Setup Guide](docs/SETUP.md).
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/skylarksoftware/janua.git
