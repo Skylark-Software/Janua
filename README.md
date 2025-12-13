@@ -30,7 +30,7 @@ Janua solves these problems by:
 
 | Target | Video | Audio | Notes |
 |--------|-------|-------|-------|
-| KDE Plasma KRdp | ✅ | ✅ | Requires H.264/AVC support (Janua 2.0+) |
+| KDE Plasma KRdp | ✅ | ✅ | Requires H.264/AVC support |
 | GNOME Remote Desktop (GNOME 48+) | ✅ | ✅ | Fedora 42, Ubuntu 25.04+ |
 | GNOME Remote Desktop (GNOME 46) | ✅ | ❌ | Ubuntu 24.04 - GRD has PipeWire threading bug |
 | xrdp | ✅ | ✅ | Full compatibility |

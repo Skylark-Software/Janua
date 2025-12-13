@@ -188,7 +188,7 @@ FROM debian:bookworm-slim
 
 LABEL maintainer="Skylark Software LLC"
 LABEL description="Apache Guacamole guacd with FreeRDP 3 support"
-LABEL version="1.0.0"
+LABEL version="1.0.0-beta"
 LABEL license="Apache-2.0"
 
 # Install runtime dependencies
