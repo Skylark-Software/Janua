@@ -2,12 +2,486 @@
  * Janua Branding CSS
  *
  * Replaces Apache Guacamole branding with Janua branding.
- * This respects Apache Software Foundation trademarks while
- * providing a distinct identity for the Janua project.
+ * Dark mode by default with optional light mode override.
  */
 
-/* Login page logo - replace Guacamole logo with Janua logo */
-/* Resources from extensions are served at app/ext/NAMESPACE/RESOURCE */
+/* ==========================================================================
+   CSS Custom Properties (Dark Mode Default)
+   ========================================================================== */
+:root {
+    --janua-bg-primary: #1a1a1a;
+    --janua-bg-secondary: #2a2a2a;
+    --janua-bg-tertiary: #3a3a3a;
+    --janua-bg-hover: #4a4a4a;
+    --janua-border: #4a4a4a;
+    --janua-border-light: #5a5a5a;
+    --janua-text-primary: #f5f0e8;
+    --janua-text-secondary: #ccc;
+    --janua-text-muted: #888;
+    --janua-accent: #6a9fb5;
+    --janua-accent-hover: #7ab0c6;
+    --janua-error: #ff6b6b;
+    --janua-success: #69db7c;
+    --janua-warning: #ffd43b;
+}
+
+/* ==========================================================================
+   Global Dark Mode
+   ========================================================================== */
+
+/* Base body/html styling */
+html, body {
+    background-color: var(--janua-bg-primary) !important;
+    color: var(--janua-text-primary) !important;
+}
+
+/* Main application container */
+.client-ui,
+.home-ui,
+.settings-ui {
+    background: linear-gradient(135deg, var(--janua-bg-primary) 0%, var(--janua-bg-secondary) 50%, var(--janua-bg-primary) 100%) !important;
+    color: var(--janua-text-primary) !important;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   Login Page
+   ========================================================================== */
+
+.login-ui {
+    background: linear-gradient(135deg, var(--janua-bg-primary) 0%, var(--janua-bg-secondary) 50%, var(--janua-bg-primary) 100%) !important;
+    min-height: 100vh;
+}
+
+.login-ui .login-dialog {
+    background-color: var(--janua-bg-tertiary) !important;
+    border: 1px solid var(--janua-border) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    border-radius: 8px !important;
+}
+
+.login-ui .login-dialog input[type="text"],
+.login-ui .login-dialog input[type="password"] {
+    background-color: var(--janua-bg-secondary) !important;
+    border: 1px solid var(--janua-border) !important;
+    color: var(--janua-text-primary) !important;
+    border-radius: 4px !important;
+}
+
+.login-ui .login-dialog input[type="text"]:focus,
+.login-ui .login-dialog input[type="password"]:focus {
+    border-color: var(--janua-border-light) !important;
+    outline: none !important;
+}
+
+.login-ui .login-dialog input[type="text"]::placeholder,
+.login-ui .login-dialog input[type="password"]::placeholder {
+    color: var(--janua-text-muted) !important;
+}
+
+.login-ui .login-dialog label {
+    color: var(--janua-text-primary) !important;
+}
+
+.login-ui .login-dialog .header {
+    color: var(--janua-text-primary) !important;
+}
+
+.login-ui .login-dialog input[type="submit"],
+.login-ui .login-dialog button {
+    background-color: var(--janua-bg-hover) !important;
+    color: var(--janua-text-primary) !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.login-ui .login-dialog input[type="submit"]:hover,
+.login-ui .login-dialog button:hover {
+    background-color: var(--janua-border-light) !important;
+}
+
+.login-ui .login-dialog .error {
+    color: var(--janua-error) !important;
+}
+
+.login-ui .login-dialog::after {
+    content: "Powered by Apache Guacamole";
+    display: block;
+    text-align: center;
+    font-size: 0.75em;
+    color: var(--janua-text-muted);
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid var(--janua-border);
+}
+
+/* ==========================================================================
+   Header / Navigation
+   ========================================================================== */
+
+.header,
+.guac-header,
+.navigation-header {
+    background-color: var(--janua-bg-secondary) !important;
+    border-bottom: 1px solid var(--janua-border) !important;
+    color: var(--janua-text-primary) !important;
+}
+
+.header *,
+.guac-header * {
+    color: var(--janua-text-primary) !important;
+}
+
+/* Navigation links */
+.header a,
+.guac-header a,
+.navigation a {
+    color: var(--janua-text-primary) !important;
+}
+
+.header a:hover,
+.guac-header a:hover,
+.navigation a:hover {
+    color: var(--janua-accent) !important;
+}
+
+/* User menu */
+.user-menu,
+.menu-dropdown,
+.dropdown-menu,
+.guac-menu .menu-contents,
+.menu,
+[class*="menu"] .contents,
+.header .menu,
+.guac-header .menu {
+    background-color: var(--janua-bg-tertiary) !important;
+    border: 1px solid var(--janua-border) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Upper right user menu specifically */
+.header .user-menu,
+.guac-header .user-menu,
+.header [class*="menu"],
+.guac-header [class*="menu"],
+.navigation .menu,
+.user-dropdown,
+.account-menu {
+    background-color: var(--janua-bg-tertiary) !important;
+    border: 1px solid var(--janua-border) !important;
+}
+
+.user-menu a,
+.menu-dropdown a,
+.user-menu button,
+.menu-dropdown button,
+.dropdown-menu a,
+.dropdown-menu button {
+    color: var(--janua-text-primary) !important;
+}
+
+.user-menu a:hover,
+.menu-dropdown a:hover,
+.user-menu button:hover,
+.menu-dropdown button:hover,
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+    background-color: var(--janua-bg-hover) !important;
+}
+
+/* ==========================================================================
+   Connection List / Home Screen
+   ========================================================================== */
+
+/* Connection groups and list */
+.connection-list,
+.recent-connections,
+.all-connections {
+    background-color: transparent !important;
+}
+
+/* Connection items */
+.connection,
+.connection-group,
+.recent-connection {
+    background-color: var(--janua-bg-tertiary) !important;
+    border: 1px solid var(--janua-border) !important;
+    border-radius: 6px !important;
+    color: var(--janua-text-primary) !important;
+    transition: all 0.2s ease;
+}
+
+.connection:hover,
+.connection-group:hover,
+.recent-connection:hover {
+    background-color: var(--janua-bg-hover) !important;
+    border-color: var(--janua-border-light) !important;
+}
+
+.connection .name,
+.connection-group .name,
+.recent-connection .name {
+    color: var(--janua-text-primary) !important;
+}
+
+.connection .protocol,
+.connection-group .count {
+    color: var(--janua-text-secondary) !important;
+}
+
+/* Connection icons */
+.connection .icon,
+.connection-group .icon {
+    filter: brightness(0.9) !important;
+}
+
+/* ==========================================================================
+   Sidebar / Navigation Panel
+   ========================================================================== */
+
+.sidebar,
+.navigation-sidebar,
+.guac-menu {
+    background-color: var(--janua-bg-secondary) !important;
+    border-right: 1px solid var(--janua-border) !important;
+}
+
+.sidebar *,
+.navigation-sidebar *,
+.guac-menu * {
+    color: var(--janua-text-primary) !important;
+}
+
+.sidebar a:hover,
+.navigation-sidebar a:hover,
+.guac-menu a:hover {
+    background-color: var(--janua-bg-hover) !important;
+}
+
+/* ==========================================================================
+   Forms & Inputs (Global)
+   ========================================================================== */
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+    background-color: var(--janua-bg-secondary) !important;
+    border: 1px solid var(--janua-border) !important;
+    color: var(--janua-text-primary) !important;
+    border-radius: 4px !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--janua-accent) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(106, 159, 181, 0.2) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--janua-text-muted) !important;
+}
+
+/* Buttons */
+button,
+input[type="submit"],
+input[type="button"],
+.button,
+.btn {
+    background-color: var(--janua-bg-hover) !important;
+    color: var(--janua-text-primary) !important;
+    border: 1px solid var(--janua-border) !important;
+    border-radius: 4px !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.button:hover,
+.btn:hover {
+    background-color: var(--janua-border-light) !important;
+    border-color: var(--janua-border-light) !important;
+}
+
+/* Primary/accent buttons */
+.button-primary,
+.btn-primary {
+    background-color: var(--janua-accent) !important;
+    border-color: var(--janua-accent) !important;
+}
+
+.button-primary:hover,
+.btn-primary:hover {
+    background-color: var(--janua-accent-hover) !important;
+    border-color: var(--janua-accent-hover) !important;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+table {
+    background-color: var(--janua-bg-tertiary) !important;
+    border: 1px solid var(--janua-border) !important;
+}
+
+th {
+    background-color: var(--janua-bg-secondary) !important;
+    color: var(--janua-text-primary) !important;
+    border-bottom: 2px solid var(--janua-border) !important;
+}
+
+td {
+    color: var(--janua-text-primary) !important;
+    border-bottom: 1px solid var(--janua-border) !important;
+}
+
+tr:hover {
+    background-color: var(--janua-bg-hover) !important;
+}
+
+/* ==========================================================================
+   Dialogs / Modals
+   ========================================================================== */
+
+.dialog,
+.modal,
+.guac-dialog,
+.popup {
+    background-color: var(--janua-bg-tertiary) !important;
+    border: 1px solid var(--janua-border) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+    border-radius: 8px !important;
+    color: var(--janua-text-primary) !important;
+}
+
+.dialog-overlay,
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.dialog .header,
+.modal .header,
+.dialog-header,
+.modal-header {
+    background-color: var(--janua-bg-secondary) !important;
+    border-bottom: 1px solid var(--janua-border) !important;
+    color: var(--janua-text-primary) !important;
+}
+
+/* ==========================================================================
+   Settings Page
+   ========================================================================== */
+
+.settings-ui .settings-section,
+.preferences-section {
+    background-color: var(--janua-bg-tertiary) !important;
+    border: 1px solid var(--janua-border) !important;
+    border-radius: 6px !important;
+    color: var(--janua-text-primary) !important;
+}
+
+.settings-ui h2,
+.settings-ui h3,
+.settings-ui label {
+    color: var(--janua-text-primary) !important;
+}
+
+/* Settings page tabs */
+.settings-ui .tab,
+.settings-ui .tabs a,
+.settings-ui .tabs label,
+.settings-ui .tab-label,
+.settings-ui [class*="tab"],
+.tabbed-view .tab,
+.tabbed-view .tabs a,
+.tabbed-view .tabs label,
+.page-tabs a,
+.page-tabs label,
+.section-tabs a,
+.section-tabs label,
+.settings-tabs a,
+.settings-tabs label {
+    color: var(--janua-text-primary) !important;
+}
+
+.settings-ui .tab:hover,
+.settings-ui .tabs a:hover,
+.tabbed-view .tab:hover,
+.tabbed-view .tabs a:hover {
+    color: var(--janua-accent) !important;
+}
+
+/* Active/selected tab */
+.settings-ui .tab.active,
+.settings-ui .tab.selected,
+.settings-ui .tabs a.active,
+.settings-ui .tabs a.selected,
+.tabbed-view .tab.active,
+.tabbed-view .tab.selected {
+    color: var(--janua-accent) !important;
+    border-color: var(--janua-accent) !important;
+}
+
+/* ==========================================================================
+   Scrollbars (Webkit)
+   ========================================================================== */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--janua-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--janua-bg-hover);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--janua-border-light);
+}
+
+/* ==========================================================================
+   Status Messages
+   ========================================================================== */
+
+.error,
+.error-message {
+    color: var(--janua-error) !important;
+}
+
+.success,
+.success-message {
+    color: var(--janua-success) !important;
+}
+
+.warning,
+.warning-message {
+    color: var(--janua-warning) !important;
+}
+
+/* ==========================================================================
+   Logo Styling
+   ========================================================================== */
+
 .login-ui .logo {
     background-image: url('app/ext/janua-branding/images/janua-logo.svg') !important;
     background-size: contain !important;
@@ -17,27 +491,33 @@
     height: 80px !important;
 }
 
-/* Header logo area (if visible in main app) */
 .header .logo {
     background-image: url('app/ext/janua-branding/images/janua-logo.svg') !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
 }
 
-/* Optional: Custom color scheme to differentiate from Guacamole */
-/* Janua uses a dark charcoal (#3a3a3a) and cream (#f5f0e8) palette */
-.login-ui {
-    /* Keep default styling, but could customize here */
+/* ==========================================================================
+   Light Mode Override (for those who prefer eye strain)
+   Add class="light-mode" to body to enable
+   ========================================================================== */
+
+body.light-mode {
+    --janua-bg-primary: #f5f5f5;
+    --janua-bg-secondary: #ffffff;
+    --janua-bg-tertiary: #fafafa;
+    --janua-bg-hover: #eeeeee;
+    --janua-border: #dddddd;
+    --janua-border-light: #cccccc;
+    --janua-text-primary: #333333;
+    --janua-text-secondary: #666666;
+    --janua-text-muted: #999999;
+    --janua-accent: #4a90a4;
+    --janua-accent-hover: #3a7a94;
 }
 
-/* Footer attribution styling */
-.login-ui .login-dialog::after {
-    content: "Powered by Apache Guacamole";
-    display: block;
-    text-align: center;
-    font-size: 0.75em;
-    color: #888;
-    margin-top: 1em;
-    padding-top: 1em;
-    border-top: 1px solid #e0e0e0;
+/* Light mode logo needs dark version */
+body.light-mode .login-ui .logo,
+body.light-mode .header .logo {
+    filter: invert(1) hue-rotate(180deg) !important;
 }
