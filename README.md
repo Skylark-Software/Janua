@@ -263,4 +263,8 @@ GPL-3.0-only - See [LICENSE](LICENSE) for details.
 - [FreeRDP](https://www.freerdp.com/) - Free implementation of the Remote Desktop Protocol
 - [GNOME Remote Desktop](https://gitlab.gnome.org/GNOME/gnome-remote-desktop) - Wayland-native RDP server
 
+## Trademark Notice
+
+Janua is built on [Apache Guacamole](https://guacamole.apache.org/), the clientless remote desktop gateway. Apache Guacamole, Guacamole, Apache, the Apache feather logo, and the Apache Guacamole project logo are trademarks of The Apache Software Foundation. Janua is not affiliated with or endorsed by the Apache Software Foundation.
+
 Copyright 2025 Skylark Software LLC

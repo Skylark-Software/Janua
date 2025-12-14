@@ -1,8 +1,12 @@
 {
-    "guacamoleVersion": "*",
-    "name": "Janua Branding",
-    "namespace": "janua-branding",
-    "js": [
-        "janua-audio-fix.js"
-    ]
+    "guacamoleVersion" : "1.6.0",
+    "name" : "Janua Branding",
+    "namespace" : "janua-branding",
+    "css" : [ "janua-branding.css" ],
+    "js" : [ "janua-audio-fix.js" ],
+    "translations" : [ "translations/en.json" ],
+    "resources" : {
+        "images/janua-logo.svg" : "image/svg+xml",
+        "images/janua-favicon.svg" : "image/svg+xml"
+    }
 }
