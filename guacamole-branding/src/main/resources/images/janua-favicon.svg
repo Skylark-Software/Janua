@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Janua Favicon - Door/Gateway icon only -->
+  <!-- Square format for favicon usage -->
+
+  <rect width="32" height="32" fill="#3a3a3a"/>
+
+  <!-- Door icon - stylized open door shape -->
+  <g fill="#f5f0e8">
+    <!-- Main door frame -->
+    <path d="M8 4 L8 28 L24 28 L24 4 Z" fill="none" stroke="#f5f0e8" stroke-width="2"/>
+    <!-- Door panel (opened inward) -->
+    <path d="M8 4 L18 8 L18 24 L8 28 Z" fill="#f5f0e8" opacity="0.9"/>
+    <!-- Inner door edge highlight -->
+    <path d="M18 8 L24 4 L24 28 L18 24 Z" fill="#f5f0e8" opacity="0.6"/>
+  </g>
+</svg>

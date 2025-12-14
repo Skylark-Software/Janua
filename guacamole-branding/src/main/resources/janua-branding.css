@@ -1,0 +1,43 @@
+/**
+ * Janua Branding CSS
+ *
+ * Replaces Apache Guacamole branding with Janua branding.
+ * This respects Apache Software Foundation trademarks while
+ * providing a distinct identity for the Janua project.
+ */
+
+/* Login page logo - replace Guacamole logo with Janua logo */
+/* Resources from extensions are served at app/ext/NAMESPACE/RESOURCE */
+.login-ui .logo {
+    background-image: url('app/ext/janua-branding/images/janua-logo.svg') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    width: 200px !important;
+    height: 80px !important;
+}
+
+/* Header logo area (if visible in main app) */
+.header .logo {
+    background-image: url('app/ext/janua-branding/images/janua-logo.svg') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Optional: Custom color scheme to differentiate from Guacamole */
+/* Janua uses a dark charcoal (#3a3a3a) and cream (#f5f0e8) palette */
+.login-ui {
+    /* Keep default styling, but could customize here */
+}
+
+/* Footer attribution styling */
+.login-ui .login-dialog::after {
+    content: "Powered by Apache Guacamole";
+    display: block;
+    text-align: center;
+    font-size: 0.75em;
+    color: #888;
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid #e0e0e0;
+}
