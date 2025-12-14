@@ -78,10 +78,10 @@ echo 'POSTGRES_PASSWORD=your-secure-password-here' > .env
 docker compose up -d
 ```
 
-This downloads and starts three containers:
+This builds and starts three containers:
 - **janua-guacd** - The custom guacd with FreeRDP 3 support
-- **guacamole** - The web application
-- **postgres** - The database
+- **guacamole** - The official Guacamole web application
+- **postgres** - The PostgreSQL database
 
 First startup takes a few minutes while images download.
 

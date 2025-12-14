@@ -139,6 +139,17 @@ Build just the guacd image:
 docker build -t janua-guacd ./guacd
 ```
 
+### Using Pre-built Image (Optional)
+
+If you prefer to skip the build, you can use the pre-built image from GitHub Container Registry. Edit `docker-compose.yml` and replace the guacd service:
+```yaml
+services:
+  guacd:
+    image: ghcr.io/skylark-software/janua-guacd:latest
+```
+
+### Building the Branding Extension
+
 Build the branding extension (requires Maven):
 ```bash
 cd guacamole-branding
