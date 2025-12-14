@@ -44,8 +44,8 @@ For a comprehensive guide including prerequisites, see the [Full Setup Guide](do
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/skylarksoftware/janua.git
-   cd janua
+   git clone https://github.com/Skylark-Software/Janua.git
+   cd Janua
    ```
 
 2. Set a secure database password:
@@ -255,7 +255,7 @@ Key build flags enabled:
 
 ## License
 
-GNU 3.0 - See [LICENSE](LICENSE) for details.
+GPL-3.0-only - See [LICENSE](LICENSE) for details.
 
 ## Credits
 

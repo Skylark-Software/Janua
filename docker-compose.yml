@@ -12,6 +12,8 @@ services:
     image: janua-guacd:latest
     container_name: janua-guacd
     restart: unless-stopped
+    # Host networking allows guacd to connect to RDP targets on the local network
+    # without NAT issues. The guacamole container connects via host.docker.internal.
     network_mode: host
     volumes:
       - ./drive:/drive:rw
