@@ -1,6 +1,6 @@
 # Janua - Apache Guacamole with FreeRDP 3 support
 # Copyright 2025 Skylark Software LLC
-# Licensed under Apache License 2.0
+# Licensed under GPL-3.0-only
 
 version: "3.8"
 

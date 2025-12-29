@@ -1,6 +1,6 @@
 # Janua guacd - Apache Guacamole guacd with FreeRDP 3 support
 # Copyright 2025 Skylark Software LLC
-# Licensed under Apache License 2.0
+# Licensed under GPL-3.0-only
 
 ARG GUACAMOLE_VERSION=1.6.0
 ARG FREERDP_VERSION=3.10.3
@@ -189,7 +189,7 @@ FROM debian:bookworm-slim
 LABEL maintainer="Skylark Software LLC"
 LABEL description="Apache Guacamole guacd with FreeRDP 3 support"
 LABEL version="1.0.0-beta"
-LABEL license="Apache-2.0"
+LABEL license="GPL-3.0-only"
 
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
