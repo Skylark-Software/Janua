@@ -79,7 +79,7 @@ docker compose up -d
 ```
 
 This builds and starts three containers:
-- **janua-guacd** - The custom guacd with FreeRDP 3 support
+- **janua** - The custom guacd with FreeRDP 3 support
 - **guacamole** - The official Guacamole web application
 - **postgres** - The PostgreSQL database
 

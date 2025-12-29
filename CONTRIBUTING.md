@@ -47,7 +47,7 @@ git clone https://github.com/Skylark-Software/Janua.git
 cd Janua
 
 # Build the guacd image
-docker build -t janua-guacd ./guacd
+docker build -t janua ./guacd
 
 # Test with docker-compose
 export POSTGRES_PASSWORD="test-password"

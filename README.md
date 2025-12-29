@@ -109,7 +109,7 @@ On your GNOME Wayland target machine:
 └─────────────────────────┬───────────────────────────────────┘
                           │ Guacamole Protocol
 ┌─────────────────────────▼───────────────────────────────────┐
-│                   janua-guacd                               │
+│                     janua                                   │
 │              (This Custom Build)                            │
 │     FreeRDP 3.10.3 + RDPSND v8 Patch + PipeWire             │
 │                   Port 4822                                 │
@@ -136,7 +136,7 @@ On your GNOME Wayland target machine:
 
 Build just the guacd image:
 ```bash
-docker build -t janua-guacd ./guacd
+docker build -t janua ./guacd
 ```
 
 ### Using Pre-built Image (Optional)
@@ -145,7 +145,7 @@ If you prefer to skip the build, you can use the pre-built image from GitHub Con
 ```yaml
 services:
   guacd:
-    image: ghcr.io/skylark-software/janua-guacd:latest
+    image: ghcr.io/skylark-software/janua:latest
 ```
 
 ### Building the Branding Extension

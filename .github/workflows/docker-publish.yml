@@ -12,7 +12,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/janua-guacd
+  IMAGE_NAME: ${{ github.repository_owner }}/janua
 
 jobs:
   build-and-push:
