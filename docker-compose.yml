@@ -3,9 +3,15 @@
 #
 # This project is licensed under the GNU General Public License v3.0 only (GPL-3.0-only).
 #
-# This configuration uses Apache Guacamole, which is licensed under
-# the Apache License, Version 2.0. Copyright © The Apache Software Foundation.
-# See the LICENSES directory or https://www.apache.org/licenses/LICENSE-2.0
+# This configuration uses the following third-party components:
+#
+# - Apache Guacamole: Apache License 2.0
+#   Copyright © The Apache Software Foundation
+#   https://www.apache.org/licenses/LICENSE-2.0
+#
+# - PostgreSQL: PostgreSQL License (BSD-like)
+#   Copyright © The PostgreSQL Global Development Group
+#   https://www.postgresql.org/about/licence/
 
 version: "3.8"
 
