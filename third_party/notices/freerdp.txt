@@ -1,0 +1,12 @@
+FreeRDP
+Copyright 2011-2024 The FreeRDP Project
+
+Licensed under the Apache License, Version 2.0.
+See LICENSES/Apache-2.0.txt or https://www.apache.org/licenses/LICENSE-2.0
+
+================================================================================
+
+Janua uses FreeRDP version 3.10.3 without modification.
+
+FreeRDP is a free implementation of the Remote Desktop Protocol (RDP).
+Source: https://github.com/FreeRDP/FreeRDP

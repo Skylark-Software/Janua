@@ -1,18 +1,17 @@
 Janua
-Copyright 2025 Skylark Software LLC
+Copyright (C) 2025 Skylark Software LLC
 This product includes software developed by Jay Brame.
 
 This product includes software developed at:
+
 - The Apache Software Foundation (https://www.apache.org/) - Apache Guacamole
-  Copyright 2013-2024 The Apache Software Foundation
+  Copyright 2020 The Apache Software Foundation
   Licensed under the Apache License, Version 2.0
-  
+  See third_party/notices/apache-guacamole.txt for modification notices
+
 - The FreeRDP Project (https://www.freerdp.com/) - FreeRDP
+  Copyright 2011-2024 The FreeRDP Project
+  Licensed under the Apache License, Version 2.0
 
 Apache Guacamole is a trademark of the Apache Software Foundation.
 FreeRDP is a trademark of the FreeRDP Project.
-
-NO WARRANTIES OR REPRESENTATIONS OF ANY KIND ARE MADE WITH RESPECT TO THIS
-SOFTWARE. SKYLARK SOFTWARE LLC EXPRESSLY DISCLAIMS ALL WARRANTIES, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.

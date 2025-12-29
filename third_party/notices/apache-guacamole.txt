@@ -1,0 +1,25 @@
+Apache Guacamole
+Copyright 2020 The Apache Software Foundation
+
+This product includes software developed at
+The Apache Software Foundation (https://www.apache.org/).
+
+Licensed under the Apache License, Version 2.0.
+See LICENSES/Apache-2.0.txt or https://www.apache.org/licenses/LICENSE-2.0
+
+================================================================================
+
+Janua includes modified versions of the following files from
+Apache Guacamole guacamole-server version 1.6.0:
+
+1. src/protocols/rdp/gdi.c
+   Modification: Added RDPGFX surface update synchronization for H.264 streams
+
+2. src/protocols/rdp/settings.c
+   Modification: Enabled H.264/AVC420 codec support for Graphics Pipeline
+
+3. src/protocols/rdp/channels/rdpsnd/rdpsnd-messages.c
+   Modification: Updated RDPSND protocol version to 8 for modern RDP servers
+
+These modifications are Copyright (c) 2025 Skylark Software LLC,
+released under GPL-3.0-only as part of the Janua project.
