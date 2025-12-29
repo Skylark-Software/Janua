@@ -1,6 +1,14 @@
-# Janua guacd - Apache Guacamole guacd with FreeRDP 3 support
-# Copyright 2025 Skylark Software LLC
-# Licensed under GPL-3.0-only
+# Janua
+# Copyright (C) 2025 Skylark Software LLC
+#
+# This project is licensed under the GNU General Public License v3.0 only (GPL-3.0-only).
+#
+# This image builds and redistributes guacd from the Apache Guacamole project.
+# Apache Guacamole is licensed under the Apache License, Version 2.0.
+# Copyright © The Apache Software Foundation.
+#
+# A copy of the Apache License, Version 2.0 is provided in the LICENSES directory
+# or available at https://www.apache.org/licenses/LICENSE-2.0
 
 ARG GUACAMOLE_VERSION=1.6.0
 ARG FREERDP_VERSION=3.10.3
@@ -187,7 +195,7 @@ RUN make -j$(nproc) \
 FROM debian:bookworm-slim
 
 LABEL maintainer="Skylark Software LLC"
-LABEL description="Apache Guacamole guacd with FreeRDP 3 support"
+LABEL description="A fork of Apache Guacamole guacd with FreeRDP3, H.264/AVC, RDPSND v8, and GDI/RDPGFX sync fix"
 LABEL version="1.0.0-beta"
 LABEL license="GPL-3.0-only"
 
