@@ -257,6 +257,18 @@ Key build flags enabled:
 
 GPL-3.0-only - See [LICENSE](LICENSE) for details.
 
+## Third-Party Licenses
+
+Janua includes or builds upon the following third-party components:
+
+| Component | License | Copyright |
+|-----------|---------|-----------|
+| [Apache Guacamole](https://guacamole.apache.org/) | Apache 2.0 | The Apache Software Foundation |
+| [FreeRDP](https://www.freerdp.com/) | Apache 2.0 | The FreeRDP Project |
+
+See [third_party/notices/](third_party/notices/) for full attribution and modification notices.
+See [LICENSES/](LICENSES/) for license texts.
+
 ## Credits
 
 - [Apache Guacamole](https://guacamole.apache.org/) - The clientless remote desktop gateway
