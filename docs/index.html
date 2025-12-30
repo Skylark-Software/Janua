@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janua - Remote Desktop Gateway</title>
+    <meta name="description" content="Janua is a fork of Apache Guacamole with FreeRDP 3, H.264/AVC, and modern protocol support for seamless remote desktop access.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Janua</a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#quickstart">Quick Start</a>
+                <a href="#compatibility">Compatibility</a>
+                <a href="https://github.com/Skylark-Software/Janua" target="_blank">GitHub</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Janua</h1>
+                <p class="tagline">Remote Desktop Gateway</p>
+                <p class="description">
+                    A fork of Apache Guacamole with FreeRDP 3, H.264/AVC codec support,
+                    and modern RDP protocol enhancements. Connect to GNOME Remote Desktop,
+                    KDE KRdp, and more.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#quickstart" class="btn btn-primary">Get Started</a>
+                    <a href="https://github.com/Skylark-Software/Janua" class="btn btn-secondary" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>FreeRDP 3 Support</h3>
+                    <p>Built with FreeRDP 3.10.3 for full Graphics Pipeline Extension (RDPGFX) support, enabling compatibility with modern Wayland desktops.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>H.264/AVC Codec</h3>
+                    <p>Hardware-accelerated video streaming for KDE KRdp and GNOME Remote Desktop servers that require H.264 encoding.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Audio Redirection</h3>
+                    <p>RDPSND protocol version 8 support for working audio with GNOME Remote Desktop and modern RDP servers.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Drop-in Replacement</h3>
+                    <p>Works with the standard Apache Guacamole web application. Just replace guacd with Janua.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="compatibility" class="compatibility">
+            <h2>Compatibility</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Target</th>
+                            <th>Video</th>
+                            <th>Audio</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>KDE Plasma KRdp</td>
+                            <td class="status-yes">Yes</td>
+                            <td class="status-yes">Yes</td>
+                            <td>Requires H.264/AVC support</td>
+                        </tr>
+                        <tr>
+                            <td>GNOME Remote Desktop (48+)</td>
+                            <td class="status-yes">Yes</td>
+                            <td class="status-yes">Yes</td>
+                            <td>Fedora 42, Ubuntu 25.04+</td>
+                        </tr>
+                        <tr>
+                            <td>GNOME Remote Desktop (46)</td>
+                            <td class="status-yes">Yes</td>
+                            <td class="status-no">No</td>
+                            <td>Ubuntu 24.04 - GRD has PipeWire bug</td>
+                        </tr>
+                        <tr>
+                            <td>xrdp</td>
+                            <td class="status-yes">Yes</td>
+                            <td class="status-yes">Yes</td>
+                            <td>Full compatibility</td>
+                        </tr>
+                        <tr>
+                            <td>Windows RDP</td>
+                            <td class="status-yes">Yes</td>
+                            <td class="status-yes">Yes</td>
+                            <td>Full compatibility</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="quickstart" class="quickstart">
+            <h2>Quick Start</h2>
+            <div class="steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <h3>Clone the repository</h3>
+                        <pre><code>git clone https://github.com/Skylark-Software/Janua.git
+cd Janua</code></pre>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <h3>Set a secure password</h3>
+                        <pre><code>export POSTGRES_PASSWORD="your-secure-password"</code></pre>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <h3>Start the stack</h3>
+                        <pre><code>docker compose up -d</code></pre>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <h3>Access Guacamole</h3>
+                        <p>Open <code>http://localhost:8085/guacamole</code></p>
+                        <p>Default credentials: <code>guacadmin</code> / <code>guacadmin</code></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <h2>About</h2>
+            <p>
+                <strong>Janua</strong> (Latin for "door" or "gateway") is developed by
+                <a href="https://github.com/Skylark-Software">Skylark Software LLC</a>.
+            </p>
+            <p>
+                This project is built on <a href="https://guacamole.apache.org/">Apache Guacamole</a>,
+                the clientless remote desktop gateway, and <a href="https://www.freerdp.com/">FreeRDP</a>,
+                the free RDP implementation.
+            </p>
+            <p class="license">
+                Licensed under <a href="https://github.com/Skylark-Software/Janua/blob/main/LICENSE">GPL-3.0-only</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Skylark Software LLC</p>
+            <p class="credits">
+                Developed with assistance from <a href=""></a>
+            </p>
+            <p class="trademark">
+                Apache Guacamole and the Apache feather logo are trademarks of The Apache Software Foundation.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
