@@ -58,7 +58,7 @@ For a comprehensive guide including prerequisites, see the [Full Setup Guide](do
    docker-compose up -d
    ```
 
-4. Access Guacamole at `http://localhost:8085/guacamole`
+4. Access Janua at `http://localhost:8085/janua`
 
    Default credentials: `guacadmin` / `guacadmin`
 
@@ -128,6 +128,7 @@ On your GNOME Wayland target machine:
 |-----------|-------------|
 | `guacd/` | Custom guacd Dockerfile with FreeRDP 3 and patches |
 | `guacd/patches/` | Patches for RDPGFX, H.264, and audio support (see Technical Details) |
+| `web/` | Web frontend Dockerfile (rebrands URL path to /janua) |
 | `guacamole-branding/` | Browser AudioContext fix extension |
 | `guacamole-home/` | Guacamole configuration (extensions, etc.) |
 | `initdb/` | PostgreSQL initialization scripts |
@@ -168,7 +169,7 @@ cp target/janua-branding-*.jar ../guacamole-home/extensions/
 ### Docker Compose Services
 
 - **guacd** - Custom guacd with FreeRDP 3 (network_mode: host)
-- **guacamole** - Official Guacamole web app
+- **guacamole** - Janua web frontend (rebranded Guacamole at /janua)
 - **postgres** - PostgreSQL database
 
 ### Volume Mounts

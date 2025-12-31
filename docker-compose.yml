@@ -31,8 +31,11 @@ services:
       - ./record:/record:rw
 
   guacamole:
-    image: guacamole/guacamole:1.6.0
-    container_name: janua-guacamole
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    image: janua-web:latest
+    container_name: janua-web
     restart: unless-stopped
     ports:
       - "8085:8080"
