@@ -324,6 +324,12 @@ p code {
     border-radius: 4px;
 }
 
+.note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
 /* About Section */
 .about {
     text-align: center;
