@@ -274,7 +274,6 @@ See [LICENSES/](LICENSES/) for license texts.
 
 - [Apache Guacamole](https://guacamole.apache.org/) - The clientless remote desktop gateway
 - [FreeRDP](https://www.freerdp.com/) - Free implementation of the Remote Desktop Protocol
-- [GNOME Remote Desktop](https://gitlab.gnome.org/GNOME/gnome-remote-desktop) - Wayland-native RDP server
 
 ## Trademark Notice
 
