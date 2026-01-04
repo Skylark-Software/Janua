@@ -270,7 +270,7 @@ Janua includes or builds upon the following third-party components:
 See [third_party/notices/](third_party/notices/) for full attribution and modification notices.
 See [LICENSES/](LICENSES/) for license texts.
 
-## Credits
+## Credits 
 
 - [Apache Guacamole](https://guacamole.apache.org/) - The clientless remote desktop gateway
 - [FreeRDP](https://www.freerdp.com/) - Free implementation of the Remote Desktop Protocol
