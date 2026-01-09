@@ -3,8 +3,9 @@ postgres-data/
 drive/
 record/
 
-# Generated schema (user should generate this)
-initdb/*.sql
+# Additional user schema files (001-schema.sql is included in repo)
+initdb/0[2-9]*.sql
+initdb/[1-9]*.sql
 
 # Environment files with secrets
 .env
