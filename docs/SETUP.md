@@ -98,8 +98,8 @@ You should see all three services with "Up" status.
 Open your browser to: `http://localhost:8085/guacamole`
 
 Default login:
-- Username: `guacadmin`
-- Password: `guacadmin`
+- Username: `admin`
+- Password: `admin`
 
 **Important:** Change this password immediately in Settings > Preferences.
 

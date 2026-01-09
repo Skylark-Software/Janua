@@ -60,7 +60,7 @@ For a comprehensive guide including prerequisites, see the [Full Setup Guide](do
 
 4. Access Janua at `http://localhost:8085/janua`
 
-   Default credentials: `guacadmin` / `guacadmin`
+   Default credentials: `admin` / `admin`
 
 ## Setting Up GNOME Remote Desktop
 
