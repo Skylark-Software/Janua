@@ -759,8 +759,8 @@ INSERT INTO guacamole_entity (name, type) VALUES ('admin', 'USER');
 INSERT INTO guacamole_user (entity_id, password_hash, password_salt, password_date)
 SELECT
     entity_id,
-    decode('C98EAF6B4848E876FF072B91B13322E2F83C18F29E2C60D8C9538064F0C1AD00', 'hex'),  -- 'admin'
-    decode('14888E4A9FBF921328300097656F122B8336EAFFC6DE39A93879C48795D0C665', 'hex'),
+    decode('0A5E618147CE7CD5BA6F114C3C70D351589240F67CAF396C0D5CE1DE28151840', 'hex'),  -- 'admin'
+    decode('042D39AD8458EB59C4D953580819F364B9EDE282C5FD24252F24A0111B1CB146', 'hex'),
     CURRENT_TIMESTAMP
 FROM guacamole_entity WHERE name = 'admin' AND guacamole_entity.type = 'USER';
 
