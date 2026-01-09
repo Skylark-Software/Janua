@@ -16,6 +16,8 @@ Janua solves these problems by:
 - Patching guacamole-server to advertise RDPSND version 8
 - Enabling H.264/AVC codecs for RDPGFX (required by KDE KRdp)
 
+![Janua Dashboard](docs/images/janua-dashboard.png)
+
 ## Features
 
 - **FreeRDP 3.x support** with full GFX Pipeline Extension
