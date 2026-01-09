@@ -18,5 +18,5 @@ LABEL org.opencontainers.image.vendor="Skylark Software LLC"
 LABEL org.opencontainers.image.licenses="GPL-3.0-only"
 LABEL org.opencontainers.image.source="https://github.com/Skylark-Software/Janua"
 
-# Rename the WAR file so Tomcat deploys it at /janua instead of /guacamole
-RUN mv /opt/guacamole/guacamole.war /opt/guacamole/janua.war
+# Set the webapp context path to /janua instead of /guacamole
+ENV WEBAPP_CONTEXT=janua
