@@ -95,10 +95,28 @@ img[src*=".svg"],
     border-radius: 8px !important;
 }
 
+/* Replace Guacamole logo with Janua logo */
 .login-ui .login-dialog .logo,
 .login-dialog .logo,
 guac-login .logo {
-    filter: invert(0.85) hue-rotate(180deg) !important;
+    background-image: url('app/ext/janua-branding/images/janua-logo.svg') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    width: 200px !important;
+    height: 60px !important;
+    min-width: 200px !important;
+    min-height: 60px !important;
+}
+
+/* Hide the application title text - our logo SVG already contains "Janua" */
+.login-ui .login-dialog .logo + .app-name,
+.login-ui .login-dialog .app-name,
+.login-dialog .app-name,
+guac-login .app-name,
+.login-ui h1,
+.login-dialog h1 {
+    display: none !important;
 }
 
 .login-ui .login-dialog::after {
@@ -166,6 +184,19 @@ guac-login .logo {
 #guac-menu *,
 #filesystem-menu * {
     color: var(--janua-text-primary) !important;
+}
+
+/* Menu text - ensure readable on dark background */
+/* Note: Icons remain dark for now - proper fix requires light SVG variants */
+
+.user-menu .menu-dropdown .menu-title,
+.user-menu .menu-dropdown .menu-contents li a {
+    color: var(--janua-text-primary) !important;
+}
+
+/* Menu dropdown indicator arrow */
+.menu-indicator {
+    filter: invert(1) !important;
 }
 
 .menu a:hover,

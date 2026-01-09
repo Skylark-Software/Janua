@@ -1,2 +1,9 @@
 <title>Janua</title>
 <link rel="icon" type="image/svg+xml" href="app/ext/janua-branding/images/janua-favicon.svg">
+<link rel="shortcut icon" type="image/svg+xml" href="app/ext/janua-branding/images/janua-favicon.svg">
+<script>
+// Remove any existing Guacamole favicons
+document.querySelectorAll('link[rel*="icon"]').forEach(function(el) {
+    if (!el.href.includes('janua')) el.remove();
+});
+</script>

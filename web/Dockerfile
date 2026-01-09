@@ -20,3 +20,19 @@ LABEL org.opencontainers.image.source="https://github.com/Skylark-Software/Janua
 
 # Set the webapp context path to /janua instead of /guacamole
 ENV WEBAPP_CONTEXT=janua
+
+# Copy Janua favicon/logo files
+COPY images/logo-64.png /tmp/janua-logo-64.png
+COPY images/logo-144.png /tmp/janua-logo-144.png
+
+# Replace Guacamole logos in the WAR file with Janua logos
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends zip && \
+    cd /opt/guacamole/webapp && \
+    mkdir -p /tmp/war-update/images && \
+    cp /tmp/janua-logo-64.png /tmp/war-update/images/logo-64.png && \
+    cp /tmp/janua-logo-144.png /tmp/war-update/images/logo-144.png && \
+    cd /tmp/war-update && \
+    zip -u /opt/guacamole/webapp/guacamole.war images/logo-64.png images/logo-144.png && \
+    apt-get purge -y zip && apt-get autoremove -y && rm -rf /var/lib/apt/lists/* /tmp/*
+USER guacamole

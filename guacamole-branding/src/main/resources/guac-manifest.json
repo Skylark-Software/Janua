@@ -4,6 +4,7 @@
     "namespace" : "janua-branding",
     "css" : [ "janua-branding.css" ],
     "js" : [ "janua-audio-fix.js" ],
+    "html" : [ "janua-head.html" ],
     "translations" : [ "translations/en.json" ],
     "resources" : {
         "images/janua-logo.svg" : "image/svg+xml",
