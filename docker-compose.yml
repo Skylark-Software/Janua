@@ -13,8 +13,6 @@
 #   Copyright © The PostgreSQL Global Development Group
 #   https://www.postgresql.org/about/licence/
 
-version: "3.8"
-
 services:
   guacd:
     build:
