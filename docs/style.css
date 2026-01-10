@@ -71,12 +71,11 @@ nav {
     color: var(--text-primary);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
 }
 
-.logo-icon {
-    width: 28px;
-    height: 28px;
+.logo-img {
+    height: 36px;
+    width: auto;
 }
 
 .logo:hover {
