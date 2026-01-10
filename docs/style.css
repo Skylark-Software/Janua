@@ -69,6 +69,14 @@ nav {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 28px;
 }
 
 .logo:hover {
@@ -114,14 +122,28 @@ h2 {
 .hero {
     min-height: calc(100vh - 80px);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 2rem;
+    gap: 3rem;
 }
 
 .hero-content {
     max-width: 800px;
+}
+
+.hero-screenshot {
+    max-width: 1000px;
+    width: 100%;
+}
+
+.hero-screenshot img {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .hero h1 {
