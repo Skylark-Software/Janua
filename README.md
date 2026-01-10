@@ -37,6 +37,7 @@ Janua solves these problems by:
 | GNOME Remote Desktop (GNOME 46) | ✅ | ❌ | Ubuntu 24.04 - GRD has PipeWire threading bug |
 | xrdp | ✅ | ✅ | Full compatibility |
 | Windows RDP | ✅ | ✅ | Full compatibility |
+| macOS Screen Sharing | ✅ | ❌ | VNC protocol (macOS does not support RDP) |
 
 **Note:** Ubuntu 24.04's GNOME Remote Desktop (GRD 46.3) has a [known PipeWire threading issue](https://gitlab.gnome.org/GNOME/gnome-remote-desktop/-/issues/182) that prevents audio capture. This is fixed in GNOME 48 (Fedora 42, Ubuntu 25.04+).
 
