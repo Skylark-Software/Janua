@@ -133,6 +133,12 @@ h2 {
     max-width: 800px;
 }
 
+.hero-logo {
+    height: 80px;
+    width: auto;
+    margin-bottom: 1rem;
+}
+
 .hero-screenshot {
     max-width: 1000px;
     width: 100%;
