@@ -37,6 +37,7 @@ Janua solves these problems by:
 | GNOME Remote Desktop (GNOME 46) | ✅ | ❌ | Ubuntu 24.04 - GRD has PipeWire threading bug |
 | xrdp | ✅ | ✅ | Full compatibility |
 | Windows RDP | ✅ | ✅ | Full compatibility |
+| Windows Server 2022 | ✅ | ✅ | Requires `security=nla` explicitly set |
 | macOS Screen Sharing | ✅ | ❌ | VNC protocol (macOS does not support RDP) |
 | RHEL 10 | ✅ | ✅ | GNOME Remote Desktop |
 
