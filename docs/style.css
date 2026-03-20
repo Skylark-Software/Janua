@@ -58,9 +58,9 @@ header {
 }
 
 nav {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,7 +75,7 @@ nav {
 }
 
 .logo-img {
-    height: 360px;
+    height: 80px;
     width: auto;
 }
 
@@ -104,7 +104,7 @@ main {
 
 section {
     padding: 5rem 2rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -141,7 +141,7 @@ h2 {
 }
 
 .hero-screenshot {
-    max-width: 1000px;
+    max-width: 1400px;
     width: 100%;
 }
 
@@ -382,7 +382,7 @@ footer {
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     text-align: center;
 }
