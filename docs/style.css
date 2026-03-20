@@ -1,18 +1,19 @@
-/* Janua Website Styles
-   Dark mode with warm charcoal grays */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;600;700&display=swap');
+
+/* Janua Website Styles */
 
 :root {
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2a2a2a;
-    --bg-tertiary: #3a3a3a;
-    --bg-hover: #4a4a4a;
-    --border: #4a4a4a;
-    --border-light: #5a5a5a;
-    --text-primary: #f5f0e8;
-    --text-secondary: #ccc;
-    --text-muted: #888;
-    --accent: #d97706;
-    --accent-hover: #b45309;
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #1e1e38;
+    --bg-tertiary: #2d2d4a;
+    --bg-hover: #3a3a5a;
+    --border: #2d2d4a;
+    --border-light: #3a3a5a;
+    --text-primary: #e5e7eb;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
     --success: #22c55e;
     --error: #ef4444;
 }
@@ -28,7 +29,7 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
@@ -191,12 +192,12 @@ h2 {
 
 .btn-primary {
     background-color: var(--accent);
-    color: var(--bg-primary);
+    color: #ffffff;
 }
 
 .btn-primary:hover {
     background-color: var(--accent-hover);
-    color: var(--bg-primary);
+    color: #ffffff;
 }
 
 .btn-secondary {
@@ -313,7 +314,7 @@ tr:hover {
     width: 40px;
     height: 40px;
     background-color: var(--accent);
-    color: var(--bg-primary);
+    color: #ffffff;
     border-radius: 50%;
     display: flex;
     align-items: center;
