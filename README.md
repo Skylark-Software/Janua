@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/janua-logo.png" alt="Janua" width="300">
+  <img src="docs/images/janua-logo.png" alt="Janua" width="150">
 </p>
 
 # Janua
@@ -293,5 +293,5 @@ Copyright 2025-2026 Skylark Software LLC
 ---
 
 <p align="center">
-  <img src="docs/images/skylark-software-logo.svg" alt="Skylark Software" width="200">
+  <img src="docs/images/skylark-software-logo.svg" alt="Skylark Software" width="400">
 </p>
