@@ -1,0 +1,20 @@
+# Janua™ — pre-built images override
+# Copyright 2025-2026 Skylark Software™
+# License: GPL-3.0-only
+#
+# Applied by proxmox/janua-install.sh when USE_PREBUILT=yes. The installer
+# copies this file to ./docker-compose.override.yml in the install directory,
+# and Docker Compose auto-merges it with docker-compose.yml.
+#
+# Requires Docker Compose v2.24+ for the `!reset null` syntax. If you target
+# older versions, remove the `build: !reset null` lines and invoke compose
+# with --no-build.
+
+services:
+  guacd:
+    image: ghcr.io/skylark-software/janua:latest
+    build: !reset null
+
+  guacamole:
+    image: ghcr.io/skylark-software/janua-web:latest
+    build: !reset null
