@@ -3,7 +3,7 @@
 Deploy Janua™ as an LXC container on Proxmox VE. This is an alternate
 distribution for users who prefer Proxmox over running Docker on a bare host.
 
-*Janua™ and Skylark Software™ are trademarks of Skylark Software.*
+*Janua™ and Skylark Software™ are trademarks of Skylark Software LLC.*
 
 ## Quick start
 
