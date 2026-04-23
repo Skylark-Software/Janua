@@ -658,3 +658,39 @@ guac-notification * {
     background: var(--janua-accent) !important;
     color: var(--janua-bg-primary) !important;
 }
+
+
+/* ==========================================================================
+   Dark-theme icon overrides — clean asset swap (no filter hacks)
+   Guacamole ships both light and -dark icon variants; the admin dropdown
+   uses the -dark set, which disappears on our dark background. We point
+   the CSS at the already-shipped light variants instead.
+   For the magnifier (no upstream light variant), we ship our own white
+   version inside the branding JAR.
+   ========================================================================== */
+
+.user-menu .menu-dropdown .menu-contents li a[href="#/"] {
+    background-image: url(images/action-icons/guac-home.svg) !important;
+}
+
+.user-menu .menu-dropdown .menu-contents li a[href="#/settings/connections"],
+.user-menu .menu-dropdown .menu-contents li a[href="#/settings/preferences"],
+.user-menu .menu-dropdown .menu-contents li a[href="#/settings/sessions"],
+.user-menu .menu-dropdown .menu-contents li a[href="#/settings/users"] {
+    background-image: url(images/action-icons/guac-config.svg) !important;
+}
+
+.user-menu .menu-dropdown .menu-contents li a.logout {
+    background-image: url(images/action-icons/guac-logout.svg) !important;
+}
+
+/* User avatar icon next to "admin" menu title — use the -white variant */
+.user-menu .menu-dropdown .menu-title {
+    background-image: url(images/user-icons/guac-user-white.svg) !important;
+}
+
+.search-string,
+.filter .search-string,
+input.search-string {
+    background-image: url(app/ext/janua-branding/images/magnifier-white.svg) !important;
+}
