@@ -8,6 +8,10 @@
     "translations" : [ "translations/en.json" ],
     "resources" : {
         "images/janua-logo.svg" : "image/svg+xml",
-        "images/janua-favicon.svg" : "image/svg+xml"
+        "images/janua-logo.png" : "image/png",
+        "images/janua-favicon.svg" : "image/svg+xml",
+        "images/janua-icon.svg" : "image/svg+xml",
+        "images/magnifier-white.svg" : "image/svg+xml",
+        "images/skylark-software-logo.svg" : "image/svg+xml"
     }
 }

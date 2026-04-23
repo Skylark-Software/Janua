@@ -694,3 +694,35 @@ guac-notification * {
 input.search-string {
     background-image: url(app/ext/janua-branding/images/magnifier-white.svg) !important;
 }
+
+/* Images served by our own branding extension are already designed for
+   dark mode — skip the generic invert-SVG filter so their colors render
+   as authored. */
+img[src*="app/ext/janua-branding/"] {
+    filter: none !important;
+}
+
+/* About menu item and modal heading — match Guacamole's own menu anchor
+   specificity so our light color wins against the base theme. */
+.user-menu .menu-dropdown .menu-contents li a.about,
+.user-menu .menu-dropdown .menu-contents li #janua-about-menu-item a {
+    color: #f5f0e8 !important;
+}
+
+/* The base rule `[style*="background-image"] { filter: invert(...) }`
+   matches our About anchor because its inline style has the icon URL.
+   That filter inverts the rendered anchor — including its text — making
+   it appear near-black. Exempt the About anchor. */
+#janua-about-menu-item a,
+#janua-about-menu-item a.about,
+a.about {
+    filter: none !important;
+}
+
+#janua-about-modal h2,
+#janua-about-modal h3,
+#janua-about-modal p,
+#janua-about-modal li,
+#janua-about-modal strong {
+    color: #f5f0e8 !important;
+}
