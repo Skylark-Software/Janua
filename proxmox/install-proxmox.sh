@@ -224,39 +224,34 @@ DEFAULT_LOGIN=admin/admin (change immediately)
 EOF
 chmod 600 /root/.janua-install-info"
 
-# ---------- Final summary ----------
+# ---------- Final summary — action-oriented for new users ----------
 cat <<EOF
 
-$(echo -e "${G}")
-════════════════════════════════════════════════════════════════
- Janua™ installation complete
-════════════════════════════════════════════════════════════════
-$(echo -e "${N}")
- Container ID:       $CTID
- Hostname:           $CT_HOSTNAME
- Container IP:       $CT_IP
+${G}════════════════════════════════════════════════════════════════${N}
+${G} Janua™ is running. Here are your next 3 steps:${N}
+${G}════════════════════════════════════════════════════════════════${N}
 
- Janua web UI:       http://$CT_IP:8085/janua
- Default login:      admin / admin  ${Y}(change immediately)${N}
+ 1.  Open in your browser:  ${G}http://$CT_IP:8085/janua${N}
+ 2.  Log in with:            admin / admin
+ 3.  Change the password:    ${Y}Settings → Preferences${N}
 
- Secrets stored in container:
-   LXC root password:  /root/.janua-install-info
-   Postgres password:  /opt/janua/.postgres-password
- Retrieve with:       pct exec $CTID -- cat /root/.janua-install-info
+ When you're ready to add your first remote desktop, see:
+ https://github.com/Skylark-Software/Janua/blob/main/docs/FIRST_CONNECTION.md
 
- Manage the stack:
+ ----------------------------------------------------------------
+ Container details
+   CTID:      $CTID
+   Hostname:  $CT_HOSTNAME
+   IP:        $CT_IP
+   Secrets:   pct exec $CTID -- cat /root/.janua-install-info
+
+ Manage the stack from the Proxmox host:
    pct enter $CTID
    cd /opt/janua
    docker compose ps
    docker compose logs -f
    docker compose pull && docker compose up -d   # update
 
- Notes:
-   - For RDP to GNOME/KDE Wayland targets, see:
-     https://skylark.labrack.me/apps/forgejo/jbrame/Janua#setting-up-gnome-remote-desktop
-   - guacd runs in network_mode: host inside the LXC, which is
-     scoped to this container's network namespace (safe).
-   - For production, put the container behind a reverse proxy with
-     a real TLS cert. See proxmox/README.md for the pattern.
+ For production (real TLS cert, custom hostname): see proxmox/README.md
 
 EOF

@@ -122,6 +122,29 @@ pct stop <CTID>
 pct destroy <CTID>
 ```
 
+## If the install fails mid-way
+
+If the installer errors out before finishing, the LXC may exist but be incomplete. The cleanest recovery is to destroy it and start over:
+
+```bash
+pct list                    # find the CTID of the partial install
+pct stop <CTID>             # if the container is still running
+pct destroy <CTID>          # removes the container and its rootfs
+```
+
+Then re-run the installer. It will auto-assign the next free CTID (or you can pick one with `CTID=<id>`).
+
+Quick triage of common first-run failures:
+
+| Message | What it means | Fix |
+|---------|---------------|-----|
+| `Container cannot reach the outside world` | The LXC came up but can't route outbound | Check your bridge and that DHCP handed out a working default gateway |
+| `DNS not resolving even after configuration` | DHCP-provided DNS isn't reachable | Re-run with `NAMESERVER="<your-dns-ip>"` |
+| `Image build failed` mid-build | Usually a network hiccup during FreeRDP clone | Re-run — Docker's buildx cache picks up where it left off |
+| `Head "https://registry-1.docker.io..."` DNS error | Docker daemon lost DNS mid-run | Re-run with `NAMESERVER="..."` (the installer now pins DNS against DHCP renewals) |
+
+If a re-run gets stuck at the same point, open an issue with the full installer log.
+
 ## Running the inner installer manually
 
 If you already have a Debian 12 / 13 VM or LXC and just want the Janua stack:
