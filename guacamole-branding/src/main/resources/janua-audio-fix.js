@@ -113,3 +113,61 @@
     }, 30000);
 
 })();
+
+
+/**
+ * Janua Copyright / Trademark Footer
+ *
+ * Injects a fixed-position footer on every page (login screen and
+ * authenticated views). Uses a MutationObserver so it survives
+ * Angular's view swaps, which would otherwise tear it out.
+ */
+(function () {
+    var FOOTER_ID = 'janua-copyright-footer';
+    var FOOTER_TEXT =
+        '© 2025–2026 Skylark Software LLC. ' +
+        'Janua™ is a trademark of Skylark Software LLC.';
+
+    function addFooter() {
+        if (!document.body) return;
+        if (document.getElementById(FOOTER_ID)) return;
+        var f = document.createElement('div');
+        f.id = FOOTER_ID;
+        f.textContent = FOOTER_TEXT;
+        f.style.cssText = [
+            'position:fixed',
+            'left:0',
+            'right:0',
+            'bottom:0',
+            'padding:6px 12px',
+            'font-size:11px',
+            'line-height:1.4',
+            'color:#aaa',
+            'background:rgba(26,26,26,0.92)',
+            'border-top:1px solid #4a4a4a',
+            'text-align:center',
+            'z-index:2147483647',
+            'pointer-events:none',
+            'font-family:system-ui,-apple-system,"Segoe UI",sans-serif',
+            'white-space:nowrap',
+            'overflow:hidden',
+            'text-overflow:ellipsis'
+        ].join(';') + ';';
+        document.body.appendChild(f);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', addFooter);
+    } else {
+        addFooter();
+    }
+
+    // Angular rebuilds DOM on view transitions; reattach when the footer
+    // disappears.
+    if (window.MutationObserver) {
+        var obs = new MutationObserver(function () {
+            if (!document.getElementById(FOOTER_ID)) addFooter();
+        });
+        obs.observe(document.documentElement, { childList: true, subtree: true });
+    }
+})();
