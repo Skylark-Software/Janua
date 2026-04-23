@@ -46,6 +46,22 @@ sudo usermod -aG docker $USER
 - Or Windows with Remote Desktop enabled
 - Or xrdp on any Linux distribution
 
+## Easiest install: Proxmox VE (LXC)
+
+**If you have access to a Proxmox VE server, this is the simplest path — one command and you're done.** You don't need to configure Docker yourself; the installer creates an unprivileged LXC container, installs Docker inside, and starts Janua automatically.
+
+From a Proxmox host shell — the web console at `https://your-proxmox:8006` works (click your node in the left tree, then **Shell**) — run this as root:
+
+```bash
+bash -c "$(wget -qO- https://raw.githubusercontent.com/Skylark-Software/Janua/main/proxmox/install-proxmox.sh)"
+```
+
+When it finishes, it prints a URL like `http://192.168.1.42:8085/janua`. Open it in your browser and log in with `admin` / `admin`. Change the password from **Settings → Preferences** after logging in.
+
+That's it — you can skip the rest of this guide (which covers setting up Docker by hand on a regular Linux host) and jump straight to [Configuring Remote Desktop Targets](#configuring-remote-desktop-targets) to connect to your first machine.
+
+See [proxmox/README.md](../proxmox/README.md) for customisation options (container resources, static IP, explicit DNS, etc.).
+
 ## Installation
 
 ### Step 1: Download Janua
