@@ -11,10 +11,9 @@
 # with --no-build.
 
 services:
+  # Only the guacd (janua) image is published to GHCR today. The guacamole
+  # web service still builds locally (fast — a few minutes compared to
+  # guacd's FreeRDP 3 compile which dominates the first-run cost).
   guacd:
     image: ghcr.io/skylark-software/janua:latest
-    build: !reset null
-
-  guacamole:
-    image: ghcr.io/skylark-software/janua-web:latest
     build: !reset null

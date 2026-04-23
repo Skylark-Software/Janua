@@ -48,14 +48,18 @@ export STATIC_IP=192.168.1.50/24
 export STATIC_GW=192.168.1.1
 export NAMESERVER="192.168.1.53 1.1.1.1" # override DHCP-provided DNS (space-separated); persists in container
 export FALLBACK_DNS=1.1.1.1              # used only during install if container DNS can't resolve (default: 1.1.1.1)
-export USE_PREBUILT=no                   # 'no' (default) = build locally; 'yes' = pull from ghcr.io
+export USE_PREBUILT=yes                  # 'yes' (default) = pull published guacd from ghcr.io; 'no' = build locally
 ```
 
 Then run the installer as above.
 
-**`USE_PREBUILT` note:** defaults to `no` until the ghcr.io image pipeline is
-published publicly. Flipping to `yes` activates the `docker-compose.prebuilt.yml`
-override and pulls images instead of building.
+**`USE_PREBUILT` note:** defaults to `yes` — the installer pulls
+`ghcr.io/skylark-software/janua:latest` (the heavy guacd/FreeRDP-3 image)
+from GitHub Container Registry, shaving ~10 minutes off the first install.
+The guacamole web service is still built locally (its image isn't published
+separately and the build is fast). Set `USE_PREBUILT=no` to build everything
+from source — useful on arm64 hosts or if you want to verify/modify the
+guacd patches yourself.
 
 ## Why LXC?
 

@@ -11,7 +11,7 @@
 
 set -euo pipefail
 
-USE_PREBUILT="${USE_PREBUILT:-no}"         # 'yes' pulls from ghcr.io; 'no' builds locally (default)
+USE_PREBUILT="${USE_PREBUILT:-yes}"        # 'yes' pulls guacd from ghcr.io (default); 'no' builds locally
 INSTALL_DIR="${INSTALL_DIR:-/opt/janua}"
 REPO_URL="${REPO_URL:-https://skylark.labrack.me/apps/forgejo/jbrame/Janua.git}"
 BRANCH="${BRANCH:-main}"
