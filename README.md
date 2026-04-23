@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/images/janua-logo.png" alt="Janua" width="150">
+</p>
+
 # Janua
 
 A custom Apache Guacamole guacd build with FreeRDP 3 support, enabling full compatibility with GNOME Remote Desktop (GRD) on Wayland, including audio redirection.
@@ -284,4 +288,10 @@ See [LICENSES/](LICENSES/) for license texts.
 
 Janua is built on [Apache Guacamole](https://guacamole.apache.org/), the clientless remote desktop gateway. Apache Guacamole, Guacamole, Apache, the Apache feather logo, and the Apache Guacamole project logo are trademarks of The Apache Software Foundation. Janua is not affiliated with or endorsed by the Apache Software Foundation.
 
-Copyright 2025 Skylark Software LLC
+Copyright 2025-2026 Skylark Software LLC
+
+---
+
+<p align="center">
+  <img src="docs/images/skylark-software-logo.svg" alt="Skylark Software" width="400">
+</p>
