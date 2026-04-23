@@ -71,6 +71,19 @@ For a comprehensive guide including prerequisites, see the [Full Setup Guide](do
 
    Default credentials: `admin` / `admin`
 
+## Proxmox VE (LXC)
+
+If you run Proxmox VE, a one-shot installer creates an unprivileged LXC with Docker-in-LXC features enabled and brings up the full Janua stack inside. Same containers, same ports — just wrapped for Proxmox hosts. See [proxmox/README.md](proxmox/README.md) for customisation options (resources, network mode, static IP, explicit DNS, etc.).
+
+Quick deploy from a Proxmox host shell as root:
+
+```bash
+bash -c "$(wget -qO- https://raw.githubusercontent.com/Skylark-Software/Janua/main/proxmox/install-proxmox.sh)"
+```
+
+After it finishes, the script prints the container IP and where credentials are stored inside the container. Default resources: 2 cores, 2 GB RAM, 8 GB disk, DHCP on `vmbr0`.
+
+
 ## Setting Up GNOME Remote Desktop
 
 On your GNOME Wayland target machine:
