@@ -11,7 +11,7 @@
 # or available at https://www.apache.org/licenses/LICENSE-2.0
 
 ARG GUACAMOLE_VERSION=1.6.0
-ARG FREERDP_VERSION=3.26.0
+ARG FREERDP_VERSION=3.29.0
 
 # Build stage for FreeRDP 3
 FROM debian:bookworm-slim AS freerdp-builder
@@ -205,7 +205,7 @@ RUN make -j$(nproc) \
 FROM debian:bookworm-slim
 
 LABEL maintainer="Skylark Software LLC"
-LABEL description="A fork of Apache Guacamole guacd with FreeRDP 3.26, H.264/AVC, AV1 (experimental), RDPSND v8, and GDI/RDPGFX sync fix"
+LABEL description="A fork of Apache Guacamole guacd with FreeRDP 3.29, H.264/AVC, AV1 (experimental), RDPSND v8, and GDI/RDPGFX sync fix"
 LABEL version="1.0.0-beta"
 LABEL license="GPL-3.0-only"
 
