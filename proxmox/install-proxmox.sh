@@ -36,7 +36,7 @@ STATIC_IP="${STATIC_IP:-}"                # e.g. 192.168.1.50/24
 STATIC_GW="${STATIC_GW:-}"                # e.g. 192.168.1.1
 NAMESERVER="${NAMESERVER:-}"              # optional: override DHCP-provided DNS (space-separated list, e.g. "192.168.1.53 1.1.1.1")
 FALLBACK_DNS="${FALLBACK_DNS:-1.1.1.1}"   # used during install only if the container's DNS can't resolve
-USE_PREBUILT="${USE_PREBUILT:-}"          # yes|no; empty = channel default (stable: yes / beta: no — no prebuilt beta image yet)
+USE_PREBUILT="${USE_PREBUILT:-yes}"       # 'yes' = pull guacd from ghcr.io (fast); 'no' = build locally (slower, for arm64 or custom patches)
 
 # ---------- Colors (ANSI escape literals so they work in both echo -e and cat heredocs) ----------
 R=$'\033[0;31m'; G=$'\033[0;32m'; Y=$'\033[1;33m'; B=$'\033[0;34m'; N=$'\033[0m'
@@ -69,8 +69,8 @@ info "Proxmox VE version: $PVE_VER"
 
 # Resolve release channel to a git branch (BRANCH env overrides directly)
 case "$CHANNEL" in
-    stable) BRANCH="${BRANCH:-main}";     USE_PREBUILT="${USE_PREBUILT:-yes}" ;;
-    beta)   BRANCH="${BRANCH:-1.2-beta}"; USE_PREBUILT="${USE_PREBUILT:-no}" ;;
+    stable) BRANCH="${BRANCH:-main}";     JANUA_IMAGE_TAG="${JANUA_IMAGE_TAG:-latest}" ;;
+    beta)   BRANCH="${BRANCH:-1.2-beta}"; JANUA_IMAGE_TAG="${JANUA_IMAGE_TAG:-beta}" ;;
     *)      die "Unknown CHANNEL '$CHANNEL' (use: stable, beta)" ;;
 esac
 info "Release channel: $CHANNEL (branch: $BRANCH)"
@@ -207,6 +207,7 @@ if [[ -n "$LOCAL_INNER" ]]; then
         export USE_PREBUILT='$USE_PREBUILT'
         export INSTALL_DNS='$EFFECTIVE_DNS'
         export BRANCH='$BRANCH'
+        export JANUA_IMAGE_TAG='$JANUA_IMAGE_TAG'
         apt-get update -qq
         apt-get install -y -qq curl ca-certificates >/dev/null
         bash /tmp/janua-install.sh
@@ -218,6 +219,7 @@ else
         export USE_PREBUILT='$USE_PREBUILT'
         export INSTALL_DNS='$EFFECTIVE_DNS'
         export BRANCH='$BRANCH'
+        export JANUA_IMAGE_TAG='$JANUA_IMAGE_TAG'
         apt-get update -qq
         apt-get install -y -qq curl ca-certificates >/dev/null
         curl -fsSL '$INNER_URL' | bash
