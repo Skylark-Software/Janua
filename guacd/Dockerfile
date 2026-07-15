@@ -206,7 +206,7 @@ FROM debian:bookworm-slim
 
 LABEL maintainer="Skylark Software LLC"
 LABEL description="A fork of Apache Guacamole guacd with FreeRDP 3.29, H.264/AVC, AV1 (experimental), RDPSND v8, and GDI/RDPGFX sync fix"
-LABEL version="1.0.0-beta"
+LABEL version="1.2.0-beta.1"
 LABEL license="GPL-3.0-only"
 
 # Install runtime dependencies
