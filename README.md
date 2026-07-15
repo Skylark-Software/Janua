@@ -301,6 +301,24 @@ Key build flags enabled:
 - Try using a standard resolution (1920x1080, 2560x1440, etc.)
 - This is related to stride alignment in the RDPGFX pipeline
 
+### Broken pipe / connection reset during negotiation (Fedora + KDE krdpserver)
+Fedora ships a patent-free ffmpeg (`ffmpeg-free`) that cannot encode H.264, so
+krdpserver fails during GFX capability activation and drops the connection.
+This is a host configuration issue, not a Janua/guacd problem.
+
+- Install the full ffmpeg from [RPM Fusion](https://rpmfusion.org/) (nonfree)
+  so libx264 is available: `sudo dnf swap ffmpeg-free ffmpeg --allowerasing`
+- Restart krdpserver and reconnect
+
+### "DRM device not found" (krdpserver)
+krdpserver needs access to `/dev/dri/*` for GPU-accelerated screen capture:
+
+- Headless or VM hosts without a GPU (or GPU passthrough) have no render node —
+  use virtio-gpu or passthrough for accelerated capture
+- Make sure the user running krdpserver is in the `render` group
+  (check `ls -l /dev/dri/` and `groups`)
+- Confirm the Wayland compositor exposes a DRM node to krdpserver
+
 ## License
 
 GPL-3.0-only - See [LICENSE](LICENSE) for details.
