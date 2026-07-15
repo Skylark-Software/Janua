@@ -23,6 +23,9 @@ warn()  { echo -e "${Y}[!]${N} $*"; }
 die()   { echo -e "${R}[x]${N} $*" >&2; exit 1; }
 
 export DEBIAN_FRONTEND=noninteractive
+# Fresh LXC templates ship no generated locales; C.UTF-8 avoids a wall of
+# perl/apt locale warnings without pulling in the locales package.
+export LC_ALL=C.UTF-8 LANG=C.UTF-8
 
 # ---------- Base packages ----------
 info "Installing base packages..."

@@ -179,7 +179,7 @@ EFFECTIVE_DNS=$(echo "$DNS_CHOICE" | xargs)
 # ---------- Push inner installer and run ----------
 # If this script is running from a local file (not curl|bash), prefer the
 # inner script sitting next to it — makes dev iteration painless.
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || true)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-}")" 2>/dev/null && pwd || true)"
 LOCAL_INNER=""
 if [[ -n "$SCRIPT_DIR" && -f "$SCRIPT_DIR/janua-install.sh" ]]; then
     LOCAL_INNER="$SCRIPT_DIR/janua-install.sh"
