@@ -6,6 +6,8 @@
 
 A custom Apache Guacamole guacd build with FreeRDP 3 support, enabling full compatibility with GNOME Remote Desktop (GRD) on Wayland, including audio redirection.
 
+> **This is the 1.2 beta branch** — guacd is built on FreeRDP 3.29.0 with experimental AV1. For the stable release, use the [main branch](https://github.com/Skylark-Software/Janua/tree/main) or the v1.0.0 release.
+
 **Janua** - Latin for "door" or "gateway"
 
 ## Why Janua?
@@ -16,7 +18,7 @@ The official Apache Guacamole 1.6.0 guacd uses FreeRDP 2.x, which has two major 
 2. **RDPSND Protocol Version 6** - GNOME Remote Desktop expects RDPSND version 8; version 6 causes audio channel negotiation to fail
 
 Janua solves these problems by:
-- Building guacd against FreeRDP 3.10.3
+- Building guacd against FreeRDP 3.29.0 (beta line; stable builds 3.10.3)
 - Patching guacamole-server to advertise RDPSND version 8
 - Enabling H.264/AVC codecs for RDPGFX (required by KDE KRdp)
 
@@ -140,7 +142,7 @@ On your GNOME Wayland target machine:
 ┌─────────────────────────▼───────────────────────────────────┐
 │                     janua                                   │
 │              (This Custom Build)                            │
-│     FreeRDP 3.10.3 + RDPSND v8 Patch + PipeWire             │
+│     FreeRDP 3.29.0 + RDPSND v8 Patch + PipeWire             │
 │                   Port 4822                                 │
 └─────────────────────────┬───────────────────────────────────┘
                           │ RDP Protocol
