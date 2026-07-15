@@ -81,6 +81,13 @@ Quick deploy from a Proxmox host shell as root:
 bash -c "$(wget -qO- https://raw.githubusercontent.com/Skylark-Software/Janua/main/proxmox/install-proxmox.sh)"
 ```
 
+To try the current beta line instead (newer FreeRDP client stack — see
+[Releases](https://github.com/Skylark-Software/Janua/releases) for what's in it):
+
+```bash
+CHANNEL=beta bash -c "$(wget -qO- https://raw.githubusercontent.com/Skylark-Software/Janua/main/proxmox/install-proxmox.sh)"
+```
+
 After it finishes, the script prints the container IP and where credentials are stored inside the container. Default resources: 2 cores, 2 GB RAM, 8 GB disk, DHCP on `vmbr0`.
 
 

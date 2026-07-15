@@ -48,14 +48,22 @@ export STATIC_IP=192.168.1.50/24
 export STATIC_GW=192.168.1.1
 export NAMESERVER="192.168.1.53 1.1.1.1" # override DHCP-provided DNS (space-separated); persists in container
 export FALLBACK_DNS=1.1.1.1              # used only during install if container DNS can't resolve (default: 1.1.1.1)
+export CHANNEL=stable                    # 'stable' (default) = main branch + ghcr :latest; 'beta' = beta branch + ghcr :beta
 export USE_PREBUILT=yes                  # 'yes' (default) = pull published guacd from ghcr.io; 'no' = build locally
+export JANUA_IMAGE_TAG=latest            # ghcr tag for the prebuilt guacd; set by CHANNEL, override only for pinning
 ```
 
 Then run the installer as above.
 
-**`USE_PREBUILT` note:** defaults to `yes` — the installer pulls
-`ghcr.io/skylark-software/janua:latest` (the heavy guacd/FreeRDP-3 image)
-from GitHub Container Registry, shaving ~10 minutes off the first install.
+**`CHANNEL` note:** `stable` (default) installs from `main` and pulls the
+`:latest` guacd image; `beta` installs from the current beta branch and pulls
+the `:beta` image. The chosen image tag is persisted in the container's
+`/opt/janua/.env`, so `docker compose pull && docker compose up -d` upgrades
+stay on the same channel.
+
+**`USE_PREBUILT` note:** defaults to `yes` — the installer pulls the
+published guacd/FreeRDP-3 image for the selected channel from GitHub
+Container Registry, shaving ~10 minutes off the first install.
 The guacamole web service is still built locally (its image isn't published
 separately and the build is fast). Set `USE_PREBUILT=no` to build everything
 from source — useful on arm64 hosts or if you want to verify/modify the
