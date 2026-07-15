@@ -49,6 +49,9 @@ services:
       POSTGRESQL_USERNAME: guacamole_user
       POSTGRESQL_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
       GUACAMOLE_HOME: /janua-config
+      # Uncomment to require TOTP two-factor authentication (see README):
+      # TOTP_ENABLED: "true"
+      # TOTP_ISSUER: "Janua"
     volumes:
       - ./guacamole-home:/janua-config:ro
     depends_on:

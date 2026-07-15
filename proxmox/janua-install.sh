@@ -13,7 +13,7 @@ set -euo pipefail
 
 USE_PREBUILT="${USE_PREBUILT:-yes}"        # 'yes' pulls guacd from ghcr.io (default); 'no' builds locally
 INSTALL_DIR="${INSTALL_DIR:-/opt/janua}"
-REPO_URL="${REPO_URL:-https://skylark.labrack.me/apps/forgejo/jbrame/Janua.git}"
+REPO_URL="${REPO_URL:-https://github.com/Skylark-Software/Janua.git}"
 BRANCH="${BRANCH:-main}"
 
 R=$'\033[0;31m'; G=$'\033[0;32m'; Y=$'\033[1;33m'; B=$'\033[0;34m'; N=$'\033[0m'
@@ -23,6 +23,9 @@ warn()  { echo -e "${Y}[!]${N} $*"; }
 die()   { echo -e "${R}[x]${N} $*" >&2; exit 1; }
 
 export DEBIAN_FRONTEND=noninteractive
+# Fresh LXC templates ship no generated locales; C.UTF-8 avoids a wall of
+# perl/apt locale warnings without pulling in the locales package.
+export LC_ALL=C.UTF-8 LANG=C.UTF-8
 
 # ---------- Base packages ----------
 info "Installing base packages..."

@@ -187,6 +187,31 @@ cp target/janua-branding-*.jar ../guacamole-home/extensions/
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `POSTGRES_PASSWORD` | `changeme` | PostgreSQL password |
+| `TOTP_ENABLED` | *(unset)* | Set to `true` to require TOTP two-factor authentication for all users |
+| `TOTP_ISSUER` | `Apache Guacamole` | Issuer name shown in authenticator apps (set to `Janua` for consistent branding) |
+
+### Two-Factor Authentication (TOTP)
+
+Janua ships with Apache Guacamole's TOTP extension included. No extra jars or
+configuration files are needed -- enable it with two environment variables on
+the `guacamole` service in `docker-compose.yml`:
+
+```yaml
+    environment:
+      TOTP_ENABLED: "true"
+      TOTP_ISSUER: "Janua"
+```
+
+After restarting the stack (`docker compose up -d`), each user is prompted on
+their next login to enroll by scanning a QR code with an authenticator app
+(FreeOTP, Google Authenticator, Aegis, etc.). Subsequent logins require the
+6-digit code in addition to the password. An administrator can reset a user's
+enrollment from that user's settings page if a device is lost.
+
+All other upstream Guacamole extensions bundled in the official image (LDAP,
+SSO, Duo, ban, etc.) work the same way -- see the [Guacamole configuration
+documentation](https://guacamole.apache.org/doc/gug/guacamole-docker.html) for
+their environment variables.
 
 ### Docker Compose Services
 
@@ -275,6 +300,24 @@ Key build flags enabled:
 - Non-standard resolutions may cause display synchronization issues with H.264 decoding
 - Try using a standard resolution (1920x1080, 2560x1440, etc.)
 - This is related to stride alignment in the RDPGFX pipeline
+
+### Broken pipe / connection reset during negotiation (Fedora + KDE krdpserver)
+Fedora ships a patent-free ffmpeg (`ffmpeg-free`) that cannot encode H.264, so
+krdpserver fails during GFX capability activation and drops the connection.
+This is a host configuration issue, not a Janua/guacd problem.
+
+- Install the full ffmpeg from [RPM Fusion](https://rpmfusion.org/) (nonfree)
+  so libx264 is available: `sudo dnf swap ffmpeg-free ffmpeg --allowerasing`
+- Restart krdpserver and reconnect
+
+### "DRM device not found" (krdpserver)
+krdpserver needs access to `/dev/dri/*` for GPU-accelerated screen capture:
+
+- Headless or VM hosts without a GPU (or GPU passthrough) have no render node —
+  use virtio-gpu or passthrough for accelerated capture
+- Make sure the user running krdpserver is in the `render` group
+  (check `ls -l /dev/dri/` and `groups`)
+- Confirm the Wayland compositor exposes a DRM node to krdpserver
 
 ## License
 
