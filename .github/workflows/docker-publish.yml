@@ -47,7 +47,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=beta,enable=${{ endsWith(github.ref, -beta) }}
+            type=raw,value=beta,enable=${{ endsWith(github.ref, '-beta') }}
 
       - name: Read version from VERSION file
         id: version
