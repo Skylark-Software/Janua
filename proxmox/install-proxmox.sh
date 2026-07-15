@@ -9,10 +9,10 @@
 # with FreeRDP 3) via Docker. Run this script on a Proxmox VE host.
 #
 # Usage (Forgejo — primary during dev):
-#   bash -c "$(wget -qO- https://skylark.labrack.me/apps/forgejo/jbrame/Janua/raw/branch/main/proxmox/install-proxmox.sh)"
+#   bash -c "$(wget -qO- https://raw.githubusercontent.com/Skylark-Software/Janua/main/proxmox/install-proxmox.sh)"
 #
 # Usage (GitHub — once mirrored):
-#   bash -c "$(wget -qO- https://raw.githubusercontent.com/Skylark-Software/Janua/main/proxmox/install-proxmox.sh)"
+#   bash -c "$(wget -qO- https://skylark.labrack.me/apps/forgejo/jbrame/Janua/raw/branch/main/proxmox/install-proxmox.sh)"
 
 set -euo pipefail
 
@@ -185,7 +185,7 @@ if [[ -n "$SCRIPT_DIR" && -f "$SCRIPT_DIR/janua-install.sh" ]]; then
     LOCAL_INNER="$SCRIPT_DIR/janua-install.sh"
 fi
 
-INNER_URL="${INNER_URL:-https://skylark.labrack.me/apps/forgejo/jbrame/Janua/raw/branch/main/proxmox/janua-install.sh}"
+INNER_URL="${INNER_URL:-https://raw.githubusercontent.com/Skylark-Software/Janua/main/proxmox/janua-install.sh}"
 
 if [[ -n "$LOCAL_INNER" ]]; then
     info "Using local inner installer: $LOCAL_INNER"

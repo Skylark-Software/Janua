@@ -13,7 +13,7 @@ set -euo pipefail
 
 USE_PREBUILT="${USE_PREBUILT:-yes}"        # 'yes' pulls guacd from ghcr.io (default); 'no' builds locally
 INSTALL_DIR="${INSTALL_DIR:-/opt/janua}"
-REPO_URL="${REPO_URL:-https://skylark.labrack.me/apps/forgejo/jbrame/Janua.git}"
+REPO_URL="${REPO_URL:-https://github.com/Skylark-Software/Janua.git}"
 BRANCH="${BRANCH:-main}"
 
 R=$'\033[0;31m'; G=$'\033[0;32m'; Y=$'\033[1;33m'; B=$'\033[0;34m'; N=$'\033[0m'
