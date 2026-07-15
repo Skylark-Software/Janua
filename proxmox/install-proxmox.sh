@@ -11,6 +11,9 @@
 # Usage (Forgejo — primary during dev):
 #   bash -c "$(wget -qO- https://raw.githubusercontent.com/Skylark-Software/Janua/main/proxmox/install-proxmox.sh)"
 #
+# Beta channel (newer FreeRDP client stack, see Releases for the current beta):
+#   CHANNEL=beta bash -c "$(wget -qO- https://raw.githubusercontent.com/Skylark-Software/Janua/main/proxmox/install-proxmox.sh)"
+#
 # Usage (GitHub — once mirrored):
 #   bash -c "$(wget -qO- https://skylark.labrack.me/apps/forgejo/jbrame/Janua/raw/branch/main/proxmox/install-proxmox.sh)"
 
@@ -25,6 +28,7 @@ RAM_MB="${RAM_MB:-2048}"
 SWAP_MB="${SWAP_MB:-512}"
 BRIDGE="${BRIDGE:-vmbr0}"
 STORAGE="${STORAGE:-local-lvm}"
+CHANNEL="${CHANNEL:-stable}"                # stable | beta (release channel)
 TEMPLATE_STORAGE="${TEMPLATE_STORAGE:-local}"
 OS_TEMPLATE="${OS_TEMPLATE:-debian-12-standard}"
 NETWORK_MODE="${NETWORK_MODE:-dhcp}"      # dhcp or static
@@ -62,6 +66,14 @@ command -v pct >/dev/null 2>&1 || die "pct not found. Is this Proxmox VE?"
 
 PVE_VER=$(pveversion | head -1 | awk -F'/' '{print $2}' | cut -d'-' -f1)
 info "Proxmox VE version: $PVE_VER"
+
+# Resolve release channel to a git branch (BRANCH env overrides directly)
+case "$CHANNEL" in
+    stable) BRANCH="${BRANCH:-main}" ;;
+    beta)   BRANCH="${BRANCH:-1.2-beta}" ;;
+    *)      die "Unknown CHANNEL '$CHANNEL' (use: stable, beta)" ;;
+esac
+info "Release channel: $CHANNEL (branch: $BRANCH)"
 
 # Auto-assign CTID if not provided
 if [[ -z "$CTID" ]]; then
@@ -194,6 +206,7 @@ if [[ -n "$LOCAL_INNER" ]]; then
         export DEBIAN_FRONTEND=noninteractive
         export USE_PREBUILT='$USE_PREBUILT'
         export INSTALL_DNS='$EFFECTIVE_DNS'
+        export BRANCH='$BRANCH'
         apt-get update -qq
         apt-get install -y -qq curl ca-certificates >/dev/null
         bash /tmp/janua-install.sh
@@ -204,6 +217,7 @@ else
         export DEBIAN_FRONTEND=noninteractive
         export USE_PREBUILT='$USE_PREBUILT'
         export INSTALL_DNS='$EFFECTIVE_DNS'
+        export BRANCH='$BRANCH'
         apt-get update -qq
         apt-get install -y -qq curl ca-certificates >/dev/null
         curl -fsSL '$INNER_URL' | bash
