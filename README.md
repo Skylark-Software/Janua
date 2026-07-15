@@ -187,6 +187,31 @@ cp target/janua-branding-*.jar ../guacamole-home/extensions/
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `POSTGRES_PASSWORD` | `changeme` | PostgreSQL password |
+| `TOTP_ENABLED` | *(unset)* | Set to `true` to require TOTP two-factor authentication for all users |
+| `TOTP_ISSUER` | `Apache Guacamole` | Issuer name shown in authenticator apps (set to `Janua` for consistent branding) |
+
+### Two-Factor Authentication (TOTP)
+
+Janua ships with Apache Guacamole's TOTP extension included. No extra jars or
+configuration files are needed -- enable it with two environment variables on
+the `guacamole` service in `docker-compose.yml`:
+
+```yaml
+    environment:
+      TOTP_ENABLED: "true"
+      TOTP_ISSUER: "Janua"
+```
+
+After restarting the stack (`docker compose up -d`), each user is prompted on
+their next login to enroll by scanning a QR code with an authenticator app
+(FreeOTP, Google Authenticator, Aegis, etc.). Subsequent logins require the
+6-digit code in addition to the password. An administrator can reset a user's
+enrollment from that user's settings page if a device is lost.
+
+All other upstream Guacamole extensions bundled in the official image (LDAP,
+SSO, Duo, ban, etc.) work the same way -- see the [Guacamole configuration
+documentation](https://guacamole.apache.org/doc/gug/guacamole-docker.html) for
+their environment variables.
 
 ### Docker Compose Services
 
