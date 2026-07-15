@@ -11,7 +11,7 @@
 # or available at https://www.apache.org/licenses/LICENSE-2.0
 
 ARG GUACAMOLE_VERSION=1.6.0
-ARG FREERDP_VERSION=3.10.3
+ARG FREERDP_VERSION=3.26.0
 
 # Build stage for FreeRDP 3
 FROM debian:bookworm-slim AS freerdp-builder
@@ -65,6 +65,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libsdl2-ttf-dev \
     libfuse3-dev \
     libwebkit2gtk-4.0-dev \
+    liburiparser-dev \
+    # AV1 codec support for RDPGFX (experimental, FreeRDP 3.25+)
+    libaom-dev \
     # PipeWire support for Wayland audio
     libpipewire-0.3-dev \
     ninja-build \
@@ -102,6 +105,8 @@ RUN cmake -B build -G Ninja \
     # H.264/AVC codec support - required for KDE KRdp and modern GNOME GRD
     -DWITH_OPENH264=ON \
     -DWITH_VIDEO_FFMPEG=ON \
+    # AV1 codec support for RDPGFX (experimental, FreeRDP-proprietary extension)
+    -DWITH_GFX_AV1=ON \
     -DWITH_INTERNAL_MD4=ON \
     -DWITH_INTERNAL_MD5=ON \
     -DWITH_INTERNAL_RC4=ON \
@@ -182,7 +187,12 @@ RUN pkg-config --modversion freerdp3 && \
     pkg-config --modversion winpr3
 
 # Configure with FreeRDP 3 support
+# CFLAGS: guacamole-server 1.6.0 uses deprecated FreeRDP callbacks (pVerifyCertificate,
+# pVerifyChangedCertificate, codecs_free) that FreeRDP 3.13+ marks with WINPR_DEPRECATED_VAR.
+# guacamole-server's configure enables -Werror, promoting these to build failures.
+# Suppress until upstream guacamole-server migrates to the replacement APIs.
 RUN PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH \
+    CFLAGS="-Wno-error=deprecated-declarations" \
     ./configure \
     --prefix=/usr/local \
     --with-rdp \
@@ -195,7 +205,7 @@ RUN make -j$(nproc) \
 FROM debian:bookworm-slim
 
 LABEL maintainer="Skylark Software LLC"
-LABEL description="A fork of Apache Guacamole guacd with FreeRDP3, H.264/AVC, RDPSND v8, and GDI/RDPGFX sync fix"
+LABEL description="A fork of Apache Guacamole guacd with FreeRDP 3.26, H.264/AVC, AV1 (experimental), RDPSND v8, and GDI/RDPGFX sync fix"
 LABEL version="1.0.0-beta"
 LABEL license="GPL-3.0-only"
 
@@ -246,8 +256,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libkrb5-3 \
     libfuse3-3 \
     libicu72 \
+    liburiparser1 \
     # H.264/AVC codec runtime for RDPGFX
     libopenh264-7 \
+    # AV1 codec runtime for RDPGFX (experimental)
+    libaom3 \
     # PipeWire runtime for Wayland audio support
     libpipewire-0.3-0 \
     pipewire \
