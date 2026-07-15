@@ -15,5 +15,5 @@ services:
   # web service still builds locally (fast — a few minutes compared to
   # guacd's FreeRDP 3 compile which dominates the first-run cost).
   guacd:
-    image: ghcr.io/skylark-software/janua:latest
+    image: ghcr.io/skylark-software/janua:${JANUA_IMAGE_TAG:-latest}
     build: !reset null

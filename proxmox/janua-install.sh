@@ -12,6 +12,7 @@
 set -euo pipefail
 
 USE_PREBUILT="${USE_PREBUILT:-yes}"        # 'yes' pulls guacd from ghcr.io (default); 'no' builds locally
+JANUA_IMAGE_TAG="${JANUA_IMAGE_TAG:-latest}" # ghcr tag for the prebuilt guacd (latest = stable, beta = beta channel)
 INSTALL_DIR="${INSTALL_DIR:-/opt/janua}"
 REPO_URL="${REPO_URL:-https://github.com/Skylark-Software/Janua.git}"
 BRANCH="${BRANCH:-main}"
@@ -153,6 +154,7 @@ export POSTGRES_PASSWORD
 # ---------- Write .env for docker compose ----------
 cat > "$INSTALL_DIR/.env" <<EOF
 POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+JANUA_IMAGE_TAG=$JANUA_IMAGE_TAG
 EOF
 chmod 600 "$INSTALL_DIR/.env"
 
