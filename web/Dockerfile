@@ -16,7 +16,7 @@ LABEL org.opencontainers.image.title="Janua Web"
 LABEL org.opencontainers.image.description="Janua web frontend - Apache Guacamole with /janua URL path"
 LABEL org.opencontainers.image.vendor="Skylark Software LLC"
 LABEL org.opencontainers.image.licenses="GPL-3.0-only"
-LABEL org.opencontainers.image.version="1.0.0"
+LABEL org.opencontainers.image.version="1.0.1"
 LABEL org.opencontainers.image.source="https://github.com/Skylark-Software/Janua"
 
 # Set the webapp context path to /janua instead of /guacamole
