@@ -8,7 +8,7 @@
  #include <freerdp/graphics.h>
  #include <freerdp/primary.h>
  #include <freerdp/version.h>
-@@ -72,6 +73,16 @@ BOOL guac_rdp_gdi_begin_paint(rdpContext* context) {
+@@ -72,6 +73,17 @@ BOOL guac_rdp_gdi_begin_paint(rdpContext* context) {
      guac_rdp_client* rdp_client = (guac_rdp_client*) client->data;
      rdpGdi* gdi = context->gdi;
 
