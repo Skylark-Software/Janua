@@ -14,7 +14,7 @@ ARG GUACAMOLE_VERSION=1.6.0
 ARG FREERDP_VERSION=3.29.0
 
 # Build stage for FreeRDP 3
-FROM debian:bookworm-slim AS freerdp-builder
+FROM debian:trixie-slim AS freerdp-builder
 
 ARG FREERDP_VERSION
 
@@ -64,7 +64,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libsdl2-dev \
     libsdl2-ttf-dev \
     libfuse3-dev \
-    libwebkit2gtk-4.0-dev \
+    libwebkit2gtk-4.1-dev \
     liburiparser-dev \
     # AV1 codec support for RDPGFX (experimental, FreeRDP 3.25+)
     libaom-dev \
@@ -115,7 +115,7 @@ RUN cmake -B build -G Ninja \
     && DESTDIR=/freerdp-install cmake --install build
 
 # Build stage for guacamole-server
-FROM debian:bookworm-slim AS guacd-builder
+FROM debian:trixie-slim AS guacd-builder
 
 ARG GUACAMOLE_VERSION
 
@@ -202,11 +202,11 @@ RUN make -j$(nproc) \
     && DESTDIR=/guacd-install make install
 
 # Runtime image
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
 LABEL maintainer="Skylark Software LLC"
 LABEL description="A fork of Apache Guacamole guacd with FreeRDP 3.29, H.264/AVC, AV1 (experimental), RDPSND v8, and GDI/RDPGFX sync fix"
-LABEL version="1.2.0-beta.1"
+LABEL version="1.2.0-beta.2"
 LABEL license="GPL-3.0-only"
 
 # Install runtime dependencies
@@ -228,11 +228,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libvorbisenc2 \
     libwebp7 \
     libwebpmux3 \
-    libwebsockets17 \
-    libavcodec59 \
-    libavformat59 \
-    libavutil57 \
-    libswscale6 \
+    libwebsockets19 \
+    libavcodec61 \
+    libavformat61 \
+    libavutil59 \
+    libswscale8 \
     fonts-dejavu \
     fonts-liberation \
     netcat-openbsd \
@@ -254,11 +254,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libusb-1.0-0 \
     libcjson1 \
     libkrb5-3 \
-    libfuse3-3 \
-    libicu72 \
+    libfuse3-4 \
+    libicu76 \
     liburiparser1 \
     # H.264/AVC codec runtime for RDPGFX
-    libopenh264-7 \
+    libopenh264-8 \
     # AV1 codec runtime for RDPGFX (experimental)
     libaom3 \
     # PipeWire runtime for Wayland audio support
